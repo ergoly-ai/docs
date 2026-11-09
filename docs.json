@@ -162,16 +162,11 @@
             "group": "Reference",
             "pages": [
               "glossary",
-              {
-                "group": "Technical details",
-                "root": "technical",
-                "pages": [
-                  "technical/how-a-worker-runs",
-                  "technical/where-knowledge-lives",
-                  "technical/how-a-channel-reaches-a-worker",
-                  "technical/how-credentials-are-held"
-                ]
-              }
+              "technical",
+              "technical/how-a-worker-runs",
+              "technical/where-knowledge-lives",
+              "technical/how-a-channel-reaches-a-worker",
+              "technical/how-credentials-are-held"
             ]
           }
         ]

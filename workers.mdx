@@ -11,37 +11,75 @@ One worker can serve many clients. For each client, it gets a separate copy with
 
 The header shows the avatar, the name, the role title, a status badge, and, once the worker serves clients, a context picker: **Internal** or one client. The picker decides which copy the Tasks, Knowledge, Connections and Triage tabs show.
 
-| Tab | What it holds |
-| --- | --- |
-| Overview | The four role cards: Responsibilities, Out of scope, Behaviors, When they conflict. |
-| Clients | The clients, channels and people this worker serves, and the Add to client button. |
-| Tasks | Scheduled tasks for the chosen context, with Run now, History, Edit, Disable. |
-| Knowledge | The memory browser for the chosen context, and the worker's tools. |
-| Connections | The apps that reach this worker in the chosen context. |
-| Triage | Whether it is awake, recent conversations, and Restart. |
-| Settings | Identity, runtime, response behavior, escalation, email, and the danger zone. |
+<table>
+  <colgroup>
+    <col width="120" />
+    <col width="619" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Tab</th>
+      <th>What it holds</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Overview</td>
+      <td>The four role cards: Responsibilities, Out of scope, Behaviors, When they conflict.</td>
+    </tr>
+    <tr>
+      <td>Clients</td>
+      <td>The clients, channels and people this worker serves, and the Add to client button.</td>
+    </tr>
+    <tr>
+      <td>Tasks</td>
+      <td>Scheduled tasks for the chosen context, with Run now, History, Edit, Disable.</td>
+    </tr>
+    <tr>
+      <td>Knowledge</td>
+      <td>The memory browser for the chosen context, and the worker's tools.</td>
+    </tr>
+    <tr>
+      <td>Connections</td>
+      <td>The apps that reach this worker in the chosen context.</td>
+    </tr>
+    <tr>
+      <td>Triage</td>
+      <td>Whether it is awake, recent conversations, and Restart.</td>
+    </tr>
+    <tr>
+      <td>Settings</td>
+      <td>Identity, runtime, response behavior, escalation, email, and the danger zone.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Creating a worker {#new}
 
-Ask your AI Admin, or press **New Worker** on the Workers page. The wizard has five steps: **Identity** (name, job title, who it reports to, and a drafted responsibilities list), **Clients**, **Slack & channels** (an Add to Slack window; click Allow), **Tools**, and **Launch**, which ends with *Say hello to &lt;name>*: send it a message to prove it works.
+Ask your AI Admin, or press **New Worker** on the Workers page. The wizard has five steps: **Identity** (name, job title, who it reports to, and a drafted responsibilities list), **Clients**, **Slack & channels** (an Add to Slack window; click Allow), **Tools**, and **Launch**, which ends with _Say hello to \<name>_: send it a message to prove it works.
 
 <Columns cols={2}>
-  <Card title={"Identity"} href={"/workers/identity"}>
+  <Card title="Identity" href="/workers/identity">
     Name, avatar, Slack app, email address.
   </Card>
-  <Card title={"Role"} href={"/workers/role"}>
+
+  <Card title="Role" href="/workers/role">
     The job title and what it is for.
   </Card>
-  <Card title={"Responsibilities"} href={"/workers/responsibilities"}>
+
+  <Card title="Responsibilities" href="/workers/responsibilities">
     What it is accountable for, and what is out of scope.
   </Card>
-  <Card title={"Behaviors"} href={"/workers/behaviors"}>
+
+  <Card title="Behaviors" href="/workers/behaviors">
     Avoid, Don't, Prefer, Use.
   </Card>
-  <Card title={"Channels"} href={"/workers/channels"}>
+
+  <Card title="Channels" href="/workers/channels">
     Where it works: Slack, email, the web.
   </Card>
-  <Card title={"Knowledge"} href={"/workers/knowledge"}>
+
+  <Card title="Knowledge" href="/workers/knowledge">
     Memory and skills.
   </Card>
 </Columns>

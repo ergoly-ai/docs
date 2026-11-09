@@ -3,24 +3,50 @@ title: "Access"
 description: "Who can talk to a worker, and which clients it serves. Set on the Clients tab."
 ---
 
-A worker's access is three lists: the **clients** it serves, the **channels** it answers in, and the **people** whose direct messages belong to a client. All three are on the worker's **Clients** tab, in one table with the caption *Where messages to this Worker go: a client, or your own team (internal)*.
+A worker's access is three lists: the **clients** it serves, the **channels** it answers in, and the **people** whose direct messages belong to a client. All three are on the worker's **Clients** tab, in one table with the caption _Where messages to this Worker go: a client, or your own team (internal)_.
 
 ## Who can talk to it {#who}
 
-| Person | In a client's channel | By direct message |
-| --- | --- | --- |
-| Someone at your agency | Answered by that client's copy | Answered by your team's copy, which knows every client |
-| A client's contact, linked to that client | Answered by that client's copy | Answered by that client's copy |
-| A guest, or someone from another workspace not linked to a client | Answered by that client's copy, in that client's channel only | Told it cannot help: *I only work with people from the organization that set me up.* |
+<table>
+  <colgroup>
+    <col width="305" />
+    <col width="325" />
+    <col width="306" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Person</th>
+      <th>In a client's channel</th>
+      <th>By direct message</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Someone at your agency</td>
+      <td>Answered by that client's copy</td>
+      <td>Answered by your team's copy, which knows every client</td>
+    </tr>
+    <tr>
+      <td>A client's contact, linked to that client</td>
+      <td>Answered by that client's copy</td>
+      <td>Answered by that client's copy</td>
+    </tr>
+    <tr>
+      <td>A guest, or someone from another workspace not linked to a client</td>
+      <td>Answered by that client's copy, in that client's channel only</td>
+      <td>Told it cannot help: _I only work with people from the organization that set me up._</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Adding a client {#add}
 
-Press **Add to client**. Pick the **Client**, then tick **Channels** and **People**. As the dialog says, *channels route by conversation, people route their DMs and group DMs*. A channel or person already linked to another client is greyed out: nothing is moved silently. See [Assigning a worker](/clients/assigning-a-worker).
+Press **Add to client**. Pick the **Client**, then tick **Channels** and **People**. As the dialog says, _channels route by conversation, people route their DMs and group DMs_. A channel or person already linked to another client is greyed out: nothing is moved silently. See [Assigning a worker](/clients/assigning-a-worker).
 
 ## Channels {#channels}
 
 Each channel row can be **Mark internal**, **Reassign** to another client, or removed. **Add channel** lists channels the worker can see that are not set up yet: public ones it can **Join**, private ones you invite it to first with `/invite`. Details under [Channels](/workers/channels).
 
 <Note>
-  **Worth knowing.** A worker marked internal-only has no Add to client button. Its tab says: *This is an internal-only worker: it can never be put in front of a client. It works in DMs and internal channels only.* Your AI Admin is one.
+  **Worth knowing.** A worker marked internal-only has no Add to client button. Its tab says: _This is an internal-only worker: it can never be put in front of a client. It works in DMs and internal channels only._ Your AI Admin is one.
 </Note>
