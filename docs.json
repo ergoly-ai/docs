@@ -28,7 +28,7 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Documentation",
+        "tab": "Docs",
         "icon": "book-open",
         "groups": [
           {
@@ -260,5 +260,8 @@
   "banner": {
     "content": "Ergoly is hiring. <a href=\"https://www.ergoly.ai/jobs\">Apply today</a>.",
     "dismissible": true
+  },
+  "interaction": {
+    "drilldown": false
   }
 }
