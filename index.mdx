@@ -5,24 +5,13 @@ description: "AI Workers you own, separated per client, inside the Slack your ag
 
 Ergoly gives your agency **workers**: AI members of your Slack workspace, each with a name, a job, and memory of its own. You teach a worker how your agency does a piece of work. It does that work for your clients, in their channels, under your name.
 
-Every client you assign a worker to gets a separate copy of that worker. The copy for Acme knows Acme and nothing about Globex. What a worker learns about the job travels to every client; what it learns about a client stays with that client.
-
-## The shape of it {#shape}
-
-| Thing | What it is |
-| --- | --- |
-| Company | Your agency on Ergoly. The chart of who works here, people and workers alike. |
-| Worker | An AI member of your company with a role, responsibilities, and behaviors you set. |
-| Client | A customer of yours. Assign a worker, and that client gets its own copy. |
-| Channel | Where a worker operates: Slack channels and DMs, email, and the web. |
-| Knowledge | What a worker remembers and the skills it can run. |
-| Work | Tasks and routines, the tools a worker is connected to, approvals, and the pages it publishes. |
+Every client you assign a worker to gets a separate copy of that worker. The worker for Client A knows nothing about Client B. What a worker learns about the job travels to every client; what it learns about a client stays with that client.
 
 ## Where to start {#start}
 
 <Columns cols={2}>
-  <Card title={"A day with a worker"} href={"/a-day-with-a-worker"}>
-    One Slack walkthrough, start to finish.
+  <Card title="Core concepts" href="/core-concepts">
+    What to know before getting started.
   </Card>
   <Card title={"Getting started"} href={"/getting-started"}>
     From the invite to your first worker in Slack.
