@@ -1,0 +1,58 @@
+---
+title: "Introduction"
+description: "Read and change your own company's Ergoly environment from a terminal or a coding agent. One key, one header, one envelope."
+---
+
+Anything you can click in control, a key can do from a terminal or from a coding agent: create workers, add clients, map channels, schedule tasks, connect tools, read the activity feed. Every call is scoped to the company the key belongs to, and there is no parameter that widens it.
+
+The pages in this section are generated from the API's own OpenAPI document, so they describe exactly what the API does today. Each page has a playground that sends a real request with your key. For the ideas behind the API, the words it uses and how they map to the words in control, read [The API](/technical/api) under Technical details.
+
+## Base URL {#base-url}
+
+```text
+https://control.ergoly.ai/api/v1
+```
+
+`GET /api/v1` is the front door. It answers without a key: what the API is, how to get a key, and where the reference lives.
+
+## Authentication {#authentication}
+
+Every other route takes a company API key as a bearer token:
+
+```text
+Authorization: Bearer <your company API key>
+```
+
+An admin mints a key in control under **Settings**, on the **API keys** tab. It is shown once. A member cannot mint, revoke or rotate one; ask whoever administers your company on Ergoly.
+
+Every failure to authenticate answers one identical 401, with the front door's address in `error.docs`, so a caller with no credential at all is told where the way in is. Each operation names the one scope it is filed under, `<resource>:<read|write>`, where the resource is the first path segment after `/api/v1/`. A key minted today carries all of them; scopes are recorded on the key and on every audit row, and are not yet enforced.
+
+## Your first call {#first-call}
+
+Confirm which company a key belongs to before doing anything with it:
+
+```bash
+export ERGOLY_API_KEY="<your key>"
+
+curl -sS "https://control.ergoly.ai/api/v1/organization" \
+  -H "Authorization: Bearer $ERGOLY_API_KEY"
+```
+
+## Responses {#responses}
+
+- A single resource answers `{"data": …}`. A list answers `{"data": […], "page": …}`, and `page` is there even when there is nothing more.
+- Paging is by cursor: pass `limit` and the previous page's `nextCursor`.
+- Every refusal has one shape, `{"error": {"code", "message"}}`. Branch on `code`, never on `message`.
+
+| Code | Status | Notes |
+| --- | --- | --- |
+| `unauthorized` | 401 | Every failure to authenticate reads alike. `error.docs` carries the front door's address. |
+| `not_found` | 404 | An id that belongs to another company answers the same 404 as an id that never existed. |
+| `invalid_request` | 400 | |
+| `conflict` | 409 | Also the answer to an `Idempotency-Key` reused with a different body. |
+| `quota_exceeded` | 429 | The body carries `limit` (provisioning runs per rolling day) and `resetsAt`; `Retry-After` carries the same wait as a header. |
+| `rate_limited` | 429 | |
+| `upstream_error` | 502 | |
+| `gone` | 410 | |
+
+The API also serves this contract itself, to the same key, as Markdown, JSON or OpenAPI. [The API](/technical/api) lists where.

@@ -51,6 +51,18 @@ To add an entry:
 
 Copy an existing entry to get the shape right.
 
+## API reference
+
+The **API reference** tab is generated from `openapi.json` at the repo root, with one navigation group per spec tag listed in `docs.json` (`METHOD /path` entries). The only hand-written page is `api-reference/introduction.mdx`; everything else comes from the spec, so never write endpoint pages by hand.
+
+The spec is not hand-kept either. control builds it from its operation list (`product/control/src/lib/platform-api/docs/document.ts`), and the live API serves the same document at `/api/v1/openapi.json` behind a key. To refresh it, from `product/control` on an up-to-date `main`:
+
+```bash
+bun -e 'import { buildOpenApiDocument } from "@/lib/platform-api/docs/document"; await Bun.write("../../docs/openapi.json", JSON.stringify(buildOpenApiDocument("https://control.ergoly.ai"), null, 2) + "\n")'
+```
+
+Then, if an operation was added or removed, update the matching group in `docs.json` (a listed endpoint that is gone fails `mint validate`; a new one is invisible until listed), run `mint validate`, and commit. Refresh it whenever a control release changes the API; the changelog entry for that release is the cue. The `auth` and `errors` tags have no operations; their prose lives on the introduction page.
+
 ## Content boundaries
 
 - Do not invent product facts. If a page needs a fact that is not in control, the kb repo or an existing page, leave a `{/* TODO: … */}` comment and say so.

@@ -19,6 +19,8 @@ A **webhook** is a URL an outside system can POST to. Each one belongs to a work
 
 The reference is served by the API, to the same key the API takes, so a coding agent can fetch how to call it with the header it already has. It comes back as Markdown by default, JSON when asked for, and HTML in a browser, all from one source.
 
+The same contract, with a playground for every operation, is in the [API reference](/api-reference/introduction) section of these docs.
+
 | What | Where |
 | --- | --- |
 | The overview, the one page that answers without a key | `https://control.ergoly.ai/api/v1` |
@@ -55,7 +57,6 @@ curl -sS "https://control.ergoly.ai/api/v1/organization" \
 | memory | Knowledge | Read and write the tiers a copy mounts. |
 | connections | Connection | Credentials and connected apps, and their placements. |
 | webhooks | Web | Inbound URLs that start a turn. |
-| response-policy | Response policy | Mentions only or everything; listen. |
 | activity | Activity | The append-only audit feed. |
 | usage | — | Cost, turn outcomes, and a per-day pulse over a window. |
 | errors | — | The closed set of refusal codes. |

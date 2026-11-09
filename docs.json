@@ -196,10 +196,147 @@
       },
       {
         "tab": "API",
-        "pages": [
-          "technical/api"
-        ],
-        "icon": "user-robot"
+        "icon": "user-robot",
+        "openapi": "openapi.json",
+        "groups": [
+          {
+            "group": "Getting started",
+            "pages": [
+              "api-reference/introduction",
+              "technical/api"
+            ]
+          },
+          {
+            "group": "Organization",
+            "pages": [
+              "GET /api/v1/organization"
+            ]
+          },
+          {
+            "group": "Workers",
+            "pages": [
+              "GET /api/v1/workers",
+              "POST /api/v1/workers",
+              "GET /api/v1/company/placements",
+              "GET /api/v1/workers/me",
+              "GET /api/v1/workers/{id}",
+              "PATCH /api/v1/workers/{id}",
+              "DELETE /api/v1/workers/{id}",
+              "POST /api/v1/workers/{id}/retry",
+              "POST /api/v1/workers/{id}/stop"
+            ]
+          },
+          {
+            "group": "Eworks",
+            "pages": [
+              "GET /api/v1/workers/{id}/eworks",
+              "GET /api/v1/eworks/{id}"
+            ]
+          },
+          {
+            "group": "Clients",
+            "pages": [
+              "GET /api/v1/clients",
+              "POST /api/v1/clients",
+              "GET /api/v1/clients/{id}",
+              "PATCH /api/v1/clients/{id}",
+              "POST /api/v1/workers/{id}/clients"
+            ]
+          },
+          {
+            "group": "Channels",
+            "pages": [
+              "GET /api/v1/channels",
+              "POST /api/v1/channels",
+              "GET /api/v1/workers/{id}/channels",
+              "POST /api/v1/workers/{id}/channels",
+              "PATCH /api/v1/workers/{id}/channels/{channel}",
+              "DELETE /api/v1/workers/{id}/channels/{channel}",
+              "POST /api/v1/workers/{id}/channels/{channel}/invite"
+            ]
+          },
+          {
+            "group": "Tasks",
+            "pages": [
+              "GET /api/v1/tasks",
+              "POST /api/v1/tasks",
+              "GET /api/v1/tasks/{id}",
+              "PATCH /api/v1/tasks/{id}",
+              "DELETE /api/v1/tasks/{id}",
+              "GET /api/v1/tasks/{id}/runs",
+              "POST /api/v1/tasks/{id}/handoff",
+              "POST /api/v1/tasks/{id}/comments",
+              "POST /api/v1/tasks/{id}/state",
+              "POST /api/v1/tasks/{id}/targets",
+              "DELETE /api/v1/tasks/{id}/targets/{targetId}"
+            ]
+          },
+          {
+            "group": "Jobs",
+            "pages": [
+              "GET /api/v1/jobs/{id}"
+            ]
+          },
+          {
+            "group": "Memory",
+            "pages": [
+              "GET /api/v1/eworks/{id}/memory",
+              "PUT /api/v1/eworks/{id}/memory",
+              "POST /api/v1/eworks/{id}/memory",
+              "DELETE /api/v1/eworks/{id}/memory"
+            ]
+          },
+          {
+            "group": "Connections",
+            "pages": [
+              "GET /api/v1/connections",
+              "POST /api/v1/connections",
+              "GET /api/v1/connections/{id}",
+              "PATCH /api/v1/connections/{id}",
+              "DELETE /api/v1/connections/{id}",
+              "POST /api/v1/connections/{id}/rotate",
+              "GET /api/v1/connections/{id}/hosts",
+              "POST /api/v1/connections/{id}/hosts",
+              "DELETE /api/v1/connections/{id}/hosts/{host}",
+              "POST /api/v1/connections/oauth/{provider}/connect-url",
+              "POST /api/v1/connections/mcp",
+              "POST /api/v1/connections/mcp/{id}/finish",
+              "GET /api/v1/connections/provider-apps/{provider}",
+              "PUT /api/v1/connections/provider-apps/{provider}",
+              "DELETE /api/v1/connections/provider-apps/{provider}",
+              "POST /api/v1/connections/{id}/placements",
+              "DELETE /api/v1/connections/{id}/placements/{pid}",
+              "POST /api/v1/connections/{id}/connect-url",
+              "GET /api/v1/oauth-apps/{app}",
+              "PUT /api/v1/oauth-apps/{app}",
+              "DELETE /api/v1/oauth-apps/{app}"
+            ]
+          },
+          {
+            "group": "Webhooks",
+            "pages": [
+              "GET /api/v1/webhooks",
+              "POST /api/v1/webhooks",
+              "GET /api/v1/webhooks/{id}",
+              "PATCH /api/v1/webhooks/{id}",
+              "DELETE /api/v1/webhooks/{id}",
+              "POST /api/v1/webhooks/{id}/rotate",
+              "GET /api/v1/webhooks/{id}/deliveries"
+            ]
+          },
+          {
+            "group": "Activity",
+            "pages": [
+              "GET /api/v1/activity"
+            ]
+          },
+          {
+            "group": "Usage",
+            "pages": [
+              "GET /api/v1/usage"
+            ]
+          }
+        ]
       }
     ]
   },
@@ -264,5 +401,19 @@
   },
   "interaction": {
     "drilldown": false
+  },
+  "api": {
+    "playground": {
+      "display": "interactive",
+      "proxy": true
+    },
+    "examples": {
+      "languages": [
+        "curl",
+        "javascript",
+        "python"
+      ],
+      "defaults": "required"
+    }
   }
 }
