@@ -169,8 +169,7 @@
                   "technical/how-a-worker-runs",
                   "technical/where-knowledge-lives",
                   "technical/how-a-channel-reaches-a-worker",
-                  "technical/how-credentials-are-held",
-                  "technical/api"
+                  "technical/how-credentials-are-held"
                 ]
               }
             ]
@@ -198,6 +197,12 @@
               "changelog/2026-08-24-streamed-turns-and-reliability"
             ]
           }
+        ]
+      },
+      {
+        "tab": "API",
+        "pages": [
+          "technical/api"
         ]
       }
     ]
