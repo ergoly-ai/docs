@@ -41,7 +41,6 @@
           },
           {
             "group": "Getting started",
-            "root": "getting-started",
             "pages": [
               "getting-started/access",
               "getting-started/ai-admin",
@@ -51,8 +50,8 @@
           },
           {
             "group": "Company",
-            "root": "company",
             "pages": [
+              "company",
               "company/chart",
               "company/members",
               "company/teams",
@@ -62,13 +61,18 @@
           },
           {
             "group": "Workers",
-            "root": "workers",
             "pages": [
+              "workers",
               "workers/identity",
               "workers/role",
               "workers/responsibilities",
-              "workers/behaviors",
-              "workers/response-policy",
+              {
+                "group": "Behaviors",
+                "pages": [
+                  "workers/behaviors",
+                  "workers/response-policy"
+                ]
+              },
               "workers/reporting",
               "workers/access",
               "workers/triaging",
@@ -121,8 +125,8 @@
           },
           {
             "group": "Clients",
-            "root": "clients",
             "pages": [
+              "clients",
               "clients/adding",
               "clients/assigning-a-worker",
               "clients/separation",
@@ -131,8 +135,8 @@
           },
           {
             "group": "Work",
-            "root": "work",
             "pages": [
+              "work",
               "work/tasks",
               "work/routines",
               {
@@ -148,14 +152,7 @@
                 ]
               },
               "work/approvals",
-              {
-                "group": "Artifacts",
-                "root": "work/artifacts",
-                "expanded": false,
-                "pages": [
-                  "work/artifacts/collaboration"
-                ]
-              }
+              "work/artifacts"
             ]
           },
           {
@@ -440,5 +437,8 @@
       ],
       "defaults": "required"
     }
+  },
+  "thumbnails": {
+    "preset": "minimal"
   }
 }

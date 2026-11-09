@@ -8,7 +8,11 @@ import { SlackScene } from "/snippets/SlackScene.jsx"
 Two settings decide when a worker answers in a channel. Both are on the worker's **Settings** tab, under **Response behavior**.
 
 - **Replies**: **Only when @mentioned**, or **To anything it judges is for it**.
-- **Listens when not addressed**: **Off — un-addressed messages never reach it**, or **On — it reads them but still cannot reply**. Listening lets a worker learn from a channel it does not answer in; its Slack status shows *Listening…* while it reads.
+- **Listens when not addressed**:
+  - **Off — un-addressed messages never reach it**, or 
+  - **On — it reads them but still cannot reply**. 
+
+Listening lets a worker learn from a channel it does not answer in; its Slack status shows `Listening…` while it reads.
 
 With nothing set, a worker is quiet: it replies only when @-mentioned and sees nothing else. Direct messages are always answered.
 
