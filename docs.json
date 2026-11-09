@@ -203,7 +203,8 @@
         "tab": "API",
         "pages": [
           "technical/api"
-        ]
+        ],
+        "icon": "user-robot"
       }
     ]
   },
