@@ -53,7 +53,7 @@ Copy an existing entry to get the shape right.
 
 ## API reference
 
-The **API reference** tab is generated from `openapi.json` at the repo root, with one navigation group per spec tag listed in `docs.json` (`METHOD /path` entries). The only hand-written page is `api-reference/introduction.mdx`; everything else comes from the spec, so never write endpoint pages by hand.
+The **API** tab is generated from `openapi.json` at the repo root. Its navigation in `docs.json` lists every operation by hand as `METHOD /path`, grouped by the concept a reader has in mind (Company, Workers, Clients, Channels, Tasks, Webhooks, Connections) rather than by the spec's tags, with sub-groups where one resource covers several ideas (Provisioning, Copies, Memory; Channel mappings; Scheduled jobs; Hosts, Connected apps, MCP servers, Provider apps, Your own OAuth client). A new operation goes into the group that fits, not at the end. The only hand-written page is `api-reference/introduction.mdx`; everything else comes from the spec, so never write endpoint pages by hand.
 
 The spec is not hand-kept either. control builds it from its operation list (`product/control/src/lib/platform-api/docs/document.ts`), and the live API serves the same document at `/api/v1/openapi.json` behind a key. To refresh it, from `product/control` on an up-to-date `main`:
 

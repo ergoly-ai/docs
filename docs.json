@@ -207,9 +207,12 @@
             ]
           },
           {
-            "group": "Organization",
+            "group": "Company",
             "pages": [
-              "GET /api/v1/organization"
+              "GET /api/v1/organization",
+              "GET /api/v1/company/placements",
+              "GET /api/v1/activity",
+              "GET /api/v1/usage"
             ]
           },
           {
@@ -217,20 +220,34 @@
             "pages": [
               "GET /api/v1/workers",
               "POST /api/v1/workers",
-              "GET /api/v1/company/placements",
               "GET /api/v1/workers/me",
               "GET /api/v1/workers/{id}",
               "PATCH /api/v1/workers/{id}",
               "DELETE /api/v1/workers/{id}",
-              "POST /api/v1/workers/{id}/retry",
-              "POST /api/v1/workers/{id}/stop"
-            ]
-          },
-          {
-            "group": "Eworks",
-            "pages": [
-              "GET /api/v1/workers/{id}/eworks",
-              "GET /api/v1/eworks/{id}"
+              {
+                "group": "Provisioning",
+                "pages": [
+                  "POST /api/v1/workers/{id}/retry",
+                  "POST /api/v1/workers/{id}/stop",
+                  "GET /api/v1/jobs/{id}"
+                ]
+              },
+              {
+                "group": "Copies (eworks)",
+                "pages": [
+                  "GET /api/v1/workers/{id}/eworks",
+                  "GET /api/v1/eworks/{id}"
+                ]
+              },
+              {
+                "group": "Memory",
+                "pages": [
+                  "GET /api/v1/eworks/{id}/memory",
+                  "PUT /api/v1/eworks/{id}/memory",
+                  "POST /api/v1/eworks/{id}/memory",
+                  "DELETE /api/v1/eworks/{id}/memory"
+                ]
+              }
             ]
           },
           {
@@ -248,11 +265,16 @@
             "pages": [
               "GET /api/v1/channels",
               "POST /api/v1/channels",
-              "GET /api/v1/workers/{id}/channels",
-              "POST /api/v1/workers/{id}/channels",
-              "PATCH /api/v1/workers/{id}/channels/{channel}",
-              "DELETE /api/v1/workers/{id}/channels/{channel}",
-              "POST /api/v1/workers/{id}/channels/{channel}/invite"
+              {
+                "group": "Channel mappings",
+                "pages": [
+                  "GET /api/v1/workers/{id}/channels",
+                  "POST /api/v1/workers/{id}/channels",
+                  "PATCH /api/v1/workers/{id}/channels/{channel}",
+                  "DELETE /api/v1/workers/{id}/channels/{channel}",
+                  "POST /api/v1/workers/{id}/channels/{channel}/invite"
+                ]
+              }
             ]
           },
           {
@@ -261,55 +283,19 @@
               "GET /api/v1/tasks",
               "POST /api/v1/tasks",
               "GET /api/v1/tasks/{id}",
-              "PATCH /api/v1/tasks/{id}",
-              "DELETE /api/v1/tasks/{id}",
-              "GET /api/v1/tasks/{id}/runs",
               "POST /api/v1/tasks/{id}/handoff",
               "POST /api/v1/tasks/{id}/comments",
               "POST /api/v1/tasks/{id}/state",
-              "POST /api/v1/tasks/{id}/targets",
-              "DELETE /api/v1/tasks/{id}/targets/{targetId}"
-            ]
-          },
-          {
-            "group": "Jobs",
-            "pages": [
-              "GET /api/v1/jobs/{id}"
-            ]
-          },
-          {
-            "group": "Memory",
-            "pages": [
-              "GET /api/v1/eworks/{id}/memory",
-              "PUT /api/v1/eworks/{id}/memory",
-              "POST /api/v1/eworks/{id}/memory",
-              "DELETE /api/v1/eworks/{id}/memory"
-            ]
-          },
-          {
-            "group": "Connections",
-            "pages": [
-              "GET /api/v1/connections",
-              "POST /api/v1/connections",
-              "GET /api/v1/connections/{id}",
-              "PATCH /api/v1/connections/{id}",
-              "DELETE /api/v1/connections/{id}",
-              "POST /api/v1/connections/{id}/rotate",
-              "GET /api/v1/connections/{id}/hosts",
-              "POST /api/v1/connections/{id}/hosts",
-              "DELETE /api/v1/connections/{id}/hosts/{host}",
-              "POST /api/v1/connections/oauth/{provider}/connect-url",
-              "POST /api/v1/connections/mcp",
-              "POST /api/v1/connections/mcp/{id}/finish",
-              "GET /api/v1/connections/provider-apps/{provider}",
-              "PUT /api/v1/connections/provider-apps/{provider}",
-              "DELETE /api/v1/connections/provider-apps/{provider}",
-              "POST /api/v1/connections/{id}/placements",
-              "DELETE /api/v1/connections/{id}/placements/{pid}",
-              "POST /api/v1/connections/{id}/connect-url",
-              "GET /api/v1/oauth-apps/{app}",
-              "PUT /api/v1/oauth-apps/{app}",
-              "DELETE /api/v1/oauth-apps/{app}"
+              {
+                "group": "Scheduled jobs (routines)",
+                "pages": [
+                  "PATCH /api/v1/tasks/{id}",
+                  "DELETE /api/v1/tasks/{id}",
+                  "GET /api/v1/tasks/{id}/runs",
+                  "POST /api/v1/tasks/{id}/targets",
+                  "DELETE /api/v1/tasks/{id}/targets/{targetId}"
+                ]
+              }
             ]
           },
           {
@@ -325,15 +311,54 @@
             ]
           },
           {
-            "group": "Activity",
+            "group": "Connections",
             "pages": [
-              "GET /api/v1/activity"
-            ]
-          },
-          {
-            "group": "Usage",
-            "pages": [
-              "GET /api/v1/usage"
+              "GET /api/v1/connections",
+              "POST /api/v1/connections",
+              "GET /api/v1/connections/{id}",
+              "PATCH /api/v1/connections/{id}",
+              "DELETE /api/v1/connections/{id}",
+              "POST /api/v1/connections/{id}/rotate",
+              {
+                "group": "Hosts",
+                "pages": [
+                  "GET /api/v1/connections/{id}/hosts",
+                  "POST /api/v1/connections/{id}/hosts",
+                  "DELETE /api/v1/connections/{id}/hosts/{host}"
+                ]
+              },
+              {
+                "group": "Connected apps",
+                "pages": [
+                  "POST /api/v1/connections/oauth/{provider}/connect-url",
+                  "POST /api/v1/connections/{id}/connect-url",
+                  "POST /api/v1/connections/{id}/placements",
+                  "DELETE /api/v1/connections/{id}/placements/{pid}"
+                ]
+              },
+              {
+                "group": "MCP servers",
+                "pages": [
+                  "POST /api/v1/connections/mcp",
+                  "POST /api/v1/connections/mcp/{id}/finish"
+                ]
+              },
+              {
+                "group": "Provider apps",
+                "pages": [
+                  "GET /api/v1/connections/provider-apps/{provider}",
+                  "PUT /api/v1/connections/provider-apps/{provider}",
+                  "DELETE /api/v1/connections/provider-apps/{provider}"
+                ]
+              },
+              {
+                "group": "Your own OAuth client",
+                "pages": [
+                  "GET /api/v1/oauth-apps/{app}",
+                  "PUT /api/v1/oauth-apps/{app}",
+                  "DELETE /api/v1/oauth-apps/{app}"
+                ]
+              }
             ]
           }
         ]
