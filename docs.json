@@ -61,7 +61,7 @@
             ]
           },
           {
-            "group": "Workers",
+            "group": "AI Workers",
             "root": "workers",
             "pages": [
               "workers/identity",
