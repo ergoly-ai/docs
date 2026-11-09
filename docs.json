@@ -256,5 +256,9 @@
       "source": "/technical/glossary",
       "destination": "/glossary"
     }
-  ]
+  ],
+  "banner": {
+    "content": "Ergoly is hiring. <a href=\"https://www.ergoly.ai/jobs\">Apply today</a>.",
+    "dismissible": true
+  }
 }
