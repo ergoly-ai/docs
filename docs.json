@@ -36,7 +36,7 @@
             "pages": [
               "index",
               "core-concepts",
-              "a-day-with-a-worker"
+              "a-typical-day"
             ]
           },
           {
@@ -80,10 +80,10 @@
               {
                 "group": "Behaviors",
                 "pages": [
-                  "workers/behaviors",
-                  "workers/response-policy",
-                  "work/approvals"
-                ]
+                  "workers/behaviors/responding",
+                  "workers/behaviors/approvals"
+                ],
+                "root": "workers/behaviors"
               },
               {
                 "group": "Channels",
@@ -103,17 +103,17 @@
                   },
                   {
                     "group": "Email",
-                    "root": "workers/channels/email",
                     "expanded": false,
                     "pages": [
+                      "workers/channels/email/sending",
                       "workers/channels/email/receiving"
                     ]
                   },
                   {
                     "group": "Web",
-                    "root": "workers/channels/web",
                     "expanded": false,
                     "pages": [
+                      "workers/channels/web/webhooks",
                       "workers/channels/web/triggers"
                     ]
                   },
