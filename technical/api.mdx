@@ -1,0 +1,65 @@
+---
+title: "The API"
+description: "One key per company, one header, one envelope. The reference is served by the API itself."
+---
+
+Anything you can click in control, a key can do from a terminal or from a coding agent: create workers, add clients, map channels, schedule routines, connect tools, read the activity feed. Every call is scoped to the company the key belongs to, and there is no parameter that widens it.
+
+## Access and keys {#keys}
+
+Keys belong to the company, not to a person. Anyone holding one acts as the whole company, and every write it makes is recorded under the key's own id. Only an admin can mint or revoke a key, in control under **Settings**, on the **API keys** tab. A key is shown once. Give it an expiry if the job it does has an end; revoking takes effect from the next request.
+
+A worker can hold a key too. Your AI Admin does, placed at its own tier and injected by the gateway, which is what lets it set up your company from Slack. See [Access](/company/access).
+
+## Calling a worker from the web {#web}
+
+A **webhook** is a URL an outside system can POST to. Each one belongs to a worker and names a Slack channel or a person; a delivery starts a turn, and the answer lands there. Creating one returns a `whsec_` secret, shown once and stored hashed; send it as a Bearer token on every delivery. Lose it and you rotate. Deliveries are accepted with a 202 and a delivery id, and the turn runs afterwards. See [Web](/workers/channels/web).
+
+## The reference {#reference}
+
+The reference is served by the API, to the same key the API takes, so a coding agent can fetch how to call it with the header it already has. It comes back as Markdown by default, JSON when asked for, and HTML in a browser, all from one source.
+
+| What | Where |
+| --- | --- |
+| The overview, the one page that answers without a key | `https://control.ergoly.ai/api/v1` |
+| The reference index, one entry per resource | `https://control.ergoly.ai/api/v1/docs` |
+| One resource page | `https://control.ergoly.ai/api/v1/docs/{resource}` |
+| The whole contract as OpenAPI 3.1 | `https://control.ergoly.ai/api/v1/openapi.json` |
+
+```text "Your first call: which company does this key belong to?"
+export ERGOLY_API_KEY="<your key>"
+
+curl -sS "https://control.ergoly.ai/api/v1/organization" \
+  -H "Authorization: Bearer $ERGOLY_API_KEY"
+```
+
+## The shape of every answer {#shape}
+
+- A single resource answers `{"data": …}`. A list answers `{"data": […], "page": …}`, and `page` is there even when there is nothing more.
+- Paging is by cursor: pass `limit` and the previous page's `nextCursor`. A page stays stable while rows are written underneath it.
+- An id that belongs to another company answers 404, the same 404 an id that never existed gets.
+- A write that can create real infrastructure takes an `Idempotency-Key`. A retry is answered from the first attempt; the same key with a different body is a conflict.
+- Every refusal carries a machine-stable `code`. Branch on it, never on the message. Without a valid key every refusal reads alike, on purpose.
+
+## Resources {#resources}
+
+| Resource | Docs word | What it covers |
+| --- | --- | --- |
+| organization | Company | Which company the key belongs to. |
+| workers | Worker | The identities: one Slack app each. Responsibilities and behaviors come back on a single-worker read. |
+| eworks | A worker's copies | One per client plus your team's. Read-only. |
+| clients | Client | Create one; bind it to a worker. |
+| channels | Channel | The workspace's channel directory, and the mappings. |
+| tasks | Tasks and routines | Hand-offs, scheduled jobs, targets, run history. |
+| jobs | — | How a provisioning run is going: the other half of every 202. |
+| memory | Knowledge | Read and write the tiers a copy mounts. |
+| connections | Connection | Credentials and connected apps, and their placements. |
+| webhooks | Web | Inbound URLs that start a turn. |
+| response-policy | Response policy | Mentions only or everything; listen. |
+| activity | Activity | The append-only audit feed. |
+| usage | — | Cost, turn outcomes, and a per-day pulse over a window. |
+| errors | — | The closed set of refusal codes. |
+
+<Note>
+  **If you use Python's urllib.** Send a `User-Agent` that does not begin with `Python-urllib`. The hosting platform's bot protection refuses that one string before the request reaches Ergoly, so a good key answers 401. Any other agent string works.
+</Note>

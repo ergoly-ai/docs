@@ -1,0 +1,23 @@
+---
+title: "Channels"
+description: "Where a worker operates: Slack, email, and the web. And the events in those channels that make it act."
+---
+
+A **channel** is anywhere a worker can be reached. Slack is where it lives: channels, direct messages, group messages. Email is a second address for the same worker. The web is for other systems: a URL they can post to, and the API.
+
+An **event** is something that happens in a channel: a message, a mention, a scheduled routine firing, a delivery to a webhook. Every event starts a worker working, and ends with an answer back where the event came from. See [Events](/workers/channels/events).
+
+<Columns cols={2}>
+  <Card title={"Slack"} href={"/workers/channels/slack"}>
+    Internal channels, client channels, DMs, group DMs.
+  </Card>
+  <Card title={"Email"} href={"/workers/channels/email"}>
+    Sending now; receiving coming soon.
+  </Card>
+  <Card title={"Web"} href={"/workers/channels/web"}>
+    Hooks, triggers, and the API.
+  </Card>
+  <Card title={"Events"} href={"/workers/channels/events"}>
+    Everything that makes a worker act.
+  </Card>
+</Columns>

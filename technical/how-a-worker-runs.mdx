@@ -1,0 +1,36 @@
+---
+title: "How a worker runs"
+description: "A worker is one identity. Each client it serves gets a separate running copy, and each message it handles is one turn."
+---
+
+A **worker** (a *Worker* in the API) is one Slack app with one name. It does not run as one process. For each client you assign it to, Ergoly starts a separate copy with its own sandbox, its own memory, and its own set of files. The API calls each copy an **ework**; internally they are also called postings.
+
+## One copy per client, plus one for you {#copies}
+
+Say your worker Nora serves Acme and Globex. There are three copies of Nora: one for Acme, one for Globex, and one for your own team. The Acme copy has Acme's memory and nothing of Globex's. Your team's copy has every client's memory, which is why your own people can ask it about any account.
+
+| Copy | API name | Serves | Holds |
+| --- | --- | --- | --- |
+| Your team's | core ework | your internal channels and your own people's DMs | company memory, Nora's memory, and every client's memory |
+| Acme's | client ework | Acme's channel and Acme's people | company memory, Nora's memory, Acme's memory only |
+| Globex's | client ework | Globex's channel and Globex's people | company memory, Nora's memory, Globex's memory only |
+
+Which copy handles a message is decided before anything runs, from the channel and the sender. The copy for Acme can never be handed a Globex message, so there is no rule a persuasive message could talk it out of. That decision is described in [How a channel reaches a worker](/technical/how-a-channel-reaches-a-worker).
+
+## Turns {#turns}
+
+A **turn** is one round trip: a message arrives, one copy of the worker works on it, and one reply goes back. The message can come from Slack, from a scheduled routine, from a webhook, or from a task's log changing. A copy handles one turn at a time. A message that arrives while a turn is running waits and is handled next; a run of messages from the same person is folded into one turn.
+
+While a turn runs, Slack shows one message that fills in as steps complete. The worker writes Markdown and Ergoly converts it for Slack, so what it writes is what you read.
+
+## Sleep and wake {#sleep}
+
+A copy that has been idle for a few minutes goes to sleep, and the next message wakes it in a few seconds. There is no setting for this and nothing to keep awake. A sleeping copy is healthy, and a copy that answers after a quiet hour is proof the platform is working.
+
+## What a copy can do {#tools}
+
+Every copy has the same five tools: read a file, write a file, edit a file, run a shell command, and act in Slack. Everything else a worker does, from calling an app to scheduling a routine, is a skill it runs through the shell. A copy also has an email address, a sandbox with a file system and the web, and whatever connections have been placed within its reach.
+
+<Note>
+  **Worth knowing.** The API's `workers` resource is the identity. Its `eworks` resource lists the copies, read-only: a copy is created by assigning a client and removed by unassigning one, never directly.
+</Note>

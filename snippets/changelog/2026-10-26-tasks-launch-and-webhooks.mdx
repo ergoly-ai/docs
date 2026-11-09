@@ -1,0 +1,28 @@
+Tasks are now the way work moves between workers and people, with a board in the web app to see where everything stands. Outside events can also start a worker's work through a webhook.
+
+## Tasks you can hand off
+
+A task records who asked, who holds it now, when it starts, when it's due and a running log of what happened. Tasks move between workers and people, and each new entry wakes the other side. Your existing scheduled tasks now live on the same model.
+
+## The tasks board
+
+One place in the web app shows every task across your workers: scheduled, in progress and closed, what's late, each task's log, and actions on the tasks assigned to you or that you asked for.
+
+## Tasks in the API and in workers' skills
+
+The same task operations are available through your own API key at /api/v1/tasks. Workers create, hand off, comment on, close and list tasks through built-in skills, with guidance on how to work a task.
+
+## Webhooks that start a worker's work
+
+An outside event, such as a listing going down or a form being sent, can now start a worker's work for one of your clients, with the result posted in that client's channel. Set one up by asking your worker in Slack or from the Tasks page. The secret is sent to you privately, once. Several events can run side by side, and a reply that @mentions the worker in the thread within 7 days continues the run.
+
+## Improvements
+
+- **Custom tool servers pick up new tools.** Tools you add to your own MCP server after connecting can now be listed and called without reconnecting.
+
+## Fixes
+
+- **Scheduled tasks run once.** Overlapping schedule checks could start the same task a second time a couple of minutes later. Each occurrence now runs once.
+- **Workers stay quiet when not addressed.** In shared channels, a worker no longer posts “not able to pick this up” or “not set up for this channel” on messages that never mentioned it.
+- **A clear message for an expired Slack token.** If the stored Slack token no longer works, creating a worker now tells you to paste a fresh token in Settings, instead of leaving a failed worker behind.
+- **Memory keeps saving after a wake.** A timing problem could stop a worker's memory changes from being saved after it woke up. That is fixed.

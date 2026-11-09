@@ -1,0 +1,47 @@
+---
+title: "Workers"
+description: "An AI member of your company. It has a name, a job, responsibilities and behaviors you set, and a separate copy for each client it serves."
+---
+
+A **worker** is one Slack app with one name. People address it the way they address a colleague: in a channel, by @-mention, or in a DM. It has a role, a list of responsibilities, a list of behaviors, memory of its own, and skills it can run. Everything about it is on its page in control, under **Workers**.
+
+One worker can serve many clients. For each client, it gets a separate copy with that client's memory and nothing of any other client's. Your own team talks to a copy that holds every client's memory. You never see the copies; you see one worker.
+
+## The worker's page {#page}
+
+The header shows the avatar, the name, the role title, a status badge, and, once the worker serves clients, a context picker: **Internal** or one client. The picker decides which copy the Tasks, Knowledge, Connections and Triage tabs show.
+
+| Tab | What it holds |
+| --- | --- |
+| Overview | The four role cards: Responsibilities, Out of scope, Behaviors, When they conflict. |
+| Clients | The clients, channels and people this worker serves, and the Add to client button. |
+| Tasks | Scheduled tasks for the chosen context, with Run now, History, Edit, Disable. |
+| Knowledge | The memory browser for the chosen context, and the worker's tools. |
+| Connections | The apps that reach this worker in the chosen context. |
+| Triage | Whether it is awake, recent conversations, and Restart. |
+| Settings | Identity, runtime, response behavior, escalation, email, and the danger zone. |
+
+## Creating a worker {#new}
+
+Ask your AI Admin, or press **New Worker** on the Workers page. The wizard has five steps: **Identity** (name, job title, who it reports to, and a drafted responsibilities list), **Clients**, **Slack & channels** (an Add to Slack window; click Allow), **Tools**, and **Launch**, which ends with *Say hello to &lt;name>*: send it a message to prove it works.
+
+<Columns cols={2}>
+  <Card title={"Identity"} href={"/workers/identity"}>
+    Name, avatar, Slack app, email address.
+  </Card>
+  <Card title={"Role"} href={"/workers/role"}>
+    The job title and what it is for.
+  </Card>
+  <Card title={"Responsibilities"} href={"/workers/responsibilities"}>
+    What it is accountable for, and what is out of scope.
+  </Card>
+  <Card title={"Behaviors"} href={"/workers/behaviors"}>
+    Avoid, Don't, Prefer, Use.
+  </Card>
+  <Card title={"Channels"} href={"/workers/channels"}>
+    Where it works: Slack, email, the web.
+  </Card>
+  <Card title={"Knowledge"} href={"/workers/knowledge"}>
+    Memory and skills.
+  </Card>
+</Columns>

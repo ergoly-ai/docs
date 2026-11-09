@@ -1,0 +1,29 @@
+---
+title: "Slack"
+description: "Each worker is a member of your workspace. Every channel it is in belongs to one client or to your team, and that decides what it knows there."
+---
+
+import { SlackScene } from "/snippets/SlackScene.jsx"
+
+A worker is a named member of your Slack workspace: its own app, its own avatar, in the channels you invite it to. Four kinds of place, four pages:
+
+- **[Internal channels](/workers/channels/slack/internal-channels)**: Your team's own channels. The worker answers from everything it knows, every client included.
+- **[Client channels](/workers/channels/slack/client-channels)**: A channel that belongs to one client. The worker answers from that client's world and nothing else.
+- **[DMs](/workers/channels/slack/dms)**: A direct message. Who you are decides which copy answers.
+- **[Group DMs](/workers/channels/slack/group-dms)**: A message to the worker and a few people at once.
+
+## When a worker joins a channel {#joining}
+
+Invite a worker to a channel the way you invite a person. It stays only if a workspace admin invited it, and it asks the inviter, privately, what the channel is for, with a suggestion.
+
+<SlackScene
+  scene={{"channel":"acme","kind":"channel","lines":[{"from":"worker","name":"Nora","text":"I just joined #acme. It looks like your client Acme's channel. Set me up for Acme?","card":{"title":"Only visible to you","lines":["Set up for Acme","Internal channel","New client…","An existing client…","Leave channel"]}},{"from":"you","name":"Sam","text":"Set up for Acme"},{"from":"worker","name":"Nora","text":"Done — #acme is Acme's channel, and their agent is live. Go ahead and talk to me there."}]}}
+  channels={["acme"]}
+  caption={"Only the person who invited it can answer. Anyone else is told so."}
+/>
+
+If no client matches, it offers **New client…**, which creates the client and sets the channel up in one go. If only your team is in the channel, it suggests **Internal channel**. **Leave channel** backs out.
+
+## Threads and progress {#threads}
+
+In a channel, a worker always replies in a thread. While it works, its Slack status shows *is thinking…*. A message that arrives while it is busy gets a 👀 reaction and is handled next; several messages from the same person in a row are handled as one.

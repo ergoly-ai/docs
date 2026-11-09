@@ -1,20 +1,42 @@
 ---
-title: "Introduction"
-description: "Welcome to your project"
+title: "Ergoly"
+description: "Workers you own, one per client, inside the Slack your agency already uses. What that means and where to start."
 ---
 
-Write a short description of your product here. What it does, who it's for, and what they can accomplish with it.
+Ergoly gives your agency **workers**: AI members of your Slack workspace, each with a name, a job, and memory of its own. You teach a worker how your agency does a piece of work. It does that work for your clients, in their channels, under your name.
 
-<Tip>
-  Ready to make this your own? Start by editing this page. Update your `docs.json` file to customize your site. Then fill out the [Quickstart](/quickstart) page.
-</Tip>
+Every client you assign a worker to gets a separate copy of that worker. The copy for Acme knows Acme and nothing about Globex. What a worker learns about the job travels to every client; what it learns about a client stays with that client.
 
-<Card title="Quickstart" icon="rocket" href="/quickstart">
-  This card links to the quickstart page in your project.
-</Card>
-<Card title="Components" icon="puzzle-piece" href="https://mintlify.com/docs/components">
-  Add cards, callouts, steps, tabs, and more to design and structure your pages.
-</Card>
-<Card title="Settings" icon="gear" href="https://mintlify.com/docs/organize/settings">
-  Set your site name, branding, and navigation in the `docs.json` file.
-</Card>
+## The shape of it {#shape}
+
+| Thing | What it is |
+| --- | --- |
+| Company | Your agency on Ergoly. The chart of who works here, people and workers alike. |
+| Worker | An AI member of your company with a role, responsibilities, and behaviors you set. |
+| Client | A customer of yours. Assign a worker, and that client gets its own copy. |
+| Channel | Where a worker operates: Slack channels and DMs, email, and the web. |
+| Knowledge | What a worker remembers and the skills it can run. |
+| Work | Tasks and routines, the tools a worker is connected to, approvals, and the pages it publishes. |
+
+## Where to start {#start}
+
+<Columns cols={2}>
+  <Card title={"A day with a worker"} href={"/a-day-with-a-worker"}>
+    One Slack walkthrough, start to finish.
+  </Card>
+  <Card title={"Getting started"} href={"/getting-started"}>
+    From the invite to your first worker in Slack.
+  </Card>
+  <Card title={"Workers"} href={"/workers"}>
+    Identity, role, responsibilities, behaviors, and where they work.
+  </Card>
+  <Card title={"Clients"} href={"/clients"}>
+    Adding one, assigning a worker, and what stays separate.
+  </Card>
+</Columns>
+
+The pages use the words control uses. If you are writing code against the API or want to know what sits behind a word, see [Technical details](/technical).
+
+## For agents {#agents}
+
+Every page here is also served as Markdown, from the same source: add `.md` to a page's address, or use the **View as Markdown** link at the top of any page. The index is at [/llms.txt](https://docs.ergoly.ai/llms.txt) and the whole set in one file at [/llms-full.txt](https://docs.ergoly.ai/llms-full.txt). Point Claude Code or any agent at the index and it can read these docs the way you do.

@@ -1,0 +1,34 @@
+Four new capabilities change how workers interact with people, what they're permitted to do, and how they connect to outside tools — plus a new way to publish rich, shareable pages straight from a conversation.
+
+## Artifacts
+
+Workers can now publish self-contained pages that live in the control panel at a stable URL. Each page is private to your organization by default, or shareable by public link. Ask your worker for a report, a dashboard, a chart — anything you'd want to pass around as a link — and it handles the rest.
+
+## Approval flows
+
+Ask your worker to “get approval before” doing something and it posts Approve and Reject buttons in the conversation. Whoever presses one starts a new turn that records who decided and when, and the buttons retire the moment they're used.
+
+## Workers manage their own tools
+
+Ask your worker in Slack to connect an app, take an API key, or reconnect a service. For sign-in apps it posts a link anyone in the conversation can approve; for key-based apps, paste the key and it's stored securely. Each worker stays in its own lane — organization-wide connections are still made on the Connections page.
+
+## Responsibilities and behaviors
+
+Every worker now has two short, editable lists on its page in the control panel: what it's responsible for, and how it goes about its work. Both start empty and change nothing until you fill them in. Edit them yourself, or ask your worker to propose an update when you hand it something new to own.
+
+## Slack's new agent experience
+
+New workers install as Slack's current agent experience. When you DM a worker you'll see just the conversation — no more separate Messages and History tabs.
+
+## Improvements
+
+- **Rename connections.** Connections can now be renamed from the Connections page.
+- **Smarter channel onboarding.** Invite a worker to a channel and it privately suggests to you what the room might be for, based on its name and members. Workers leave immediately if added by a Slack Connect guest.
+- **Progress updates in place.** Each turn's status is posted once and updated as the turn runs, instead of occasionally splitting into several messages.
+- **Long turns no longer look frozen.** A turn running past five minutes now shows a clear error state rather than appearing stuck.
+- **Two accounts of the same app.** You can now connect a second account of an app you already use — two Attio workspaces on different workers, for example.
+
+## Fixes
+
+- **API key field names.** Connecting an app by API key now sends the key under the field name that app expects. Apps that named the field differently were being refused.
+- **Apps that need extra fields.** Apps that need more than a key, like a region or subdomain, now get correct defaults when a worker connects them, and a failed check no longer leaves a stray account behind.

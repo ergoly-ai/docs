@@ -1,0 +1,23 @@
+---
+title: "Triaging"
+description: "When a worker is slow, silent or stuck: what the Triage tab shows, and the three buttons that fix most things."
+---
+
+The **Triage** tab answers two questions: is the worker awake, and what has it been saying.
+
+- **Runtime**: One row per context (Internal and each client): **awake** or **sleeping**, last activity, last wake, and recent time-to-first-reply. A sleeping worker is normal. It sleeps after a few idle minutes and wakes on the next message in seconds.
+- **Turns**: Recent conversations grouped by Slack thread. Click one to read it; **Load older turns** goes back further; a copy action gives you the thread as Markdown.
+
+## The fixes, least invasive first {#fixes}
+
+1. **Stop.** Send the word `stop` in the thread, or `@worker stop`. Only the person whose message started the work can stop it; anyone at your agency can stop a scheduled run.
+2. **Restart Worker**, on the Triage tab. It does the least invasive thing that applies: clears a stuck reply, re-activates, or relaunches. It may interrupt a reply in progress.
+3. **Unquarantine**, in the banner at the top of the page. Ergoly quarantines a worker after repeated failures and says why. Read the reason, then press the button.
+
+## The danger zone {#danger}
+
+At the bottom of **Settings**: **Stop** pauses the worker; **Restart** brings a stopped or failed one back; **Re-install / update scopes** re-runs the Slack install so new permissions take effect; **Delete Worker** removes the Slack app, every copy, and all its data, after you type its name.
+
+<Note>
+  **Worth knowing.** If a worker is silent in a channel, check its [response policy](/workers/response-policy) and whether the channel is set up, before restarting anything. An un-set-up channel answers an @-mention with *I'm not set up for this channel yet*.
+</Note>

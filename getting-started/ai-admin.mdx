@@ -1,0 +1,40 @@
+---
+title: "Meet your AI Admin"
+description: "Connect Slack, name it, install it. It messages you and sets up your company and your first worker from there."
+---
+
+import { SlackScene } from "/snippets/SlackScene.jsx"
+
+Your **AI Admin** is a worker that only works inside your company. It never joins a client's channel. Its job is to set things up: workers, channels, clients, and the tools they use.
+
+## Setup, in control {#setup}
+
+Setup has four steps.
+
+1. **Connect Slack.** Ergoly needs permission to create Slack apps in your workspace. On api.slack.com/apps, open **App Configuration Tokens**, press **Generate Token**, and paste the token that starts with `xoxe-` into the **Refresh token** field.
+2. **Name your AI Admin.** Type a name (the example is Ada). Leave **Full Slack permissions** on unless you have a reason not to; it lets the AI Admin invite workers to channels and create channels for you.
+3. **Install it.** Press **Add &lt;name> to Slack** and click **Allow** in the Slack window that opens. Control shows *Starting &lt;name> up…* while the worker is built.
+4. **Done.** Control shows *&lt;name> is looking around your workspace*, then *&lt;name> has messaged you in Slack*.
+
+## Then, in Slack {#slack}
+
+Open the direct message from your AI Admin. It introduces itself and asks what the first worker should do. Answer in plain words. It proposes a name, a job, and the channels, and asks for your yes before creating anything.
+
+<SlackScene
+  scene={{"channel":"Ada","kind":"dm","lines":[{"from":"worker","name":"Ada","text":"Hi Sam, I'm Ada, your AI Admin. I set up workers, channels, clients and tools, and I ask before I change anything. What should your first worker do?"},{"from":"you","name":"Sam","text":"Account management for our retainer clients. Status notes, meeting prep, follow-ups."},{"from":"worker","name":"Ada","text":"Got it. I'll create a worker called Nora, job title Account Manager, reporting to you. To start it needs a Slack install, which opens a window for you to click Allow. Shall I go ahead?"},{"from":"you","name":"Sam","text":"Yes."}]}}
+  channels={[]}
+  caption={"The AI Admin proposes, you approve. The install link needs a workspace admin."}
+/>
+
+<Note>
+  **Worth knowing.** Only an admin can create the AI Admin, because it holds a key to your whole company. A member who opens setup sees *An admin sets up your AI Admin*. If your company already has workers, the link to add one is above the Company page's List tab.
+</Note>
+
+<Columns cols={2}>
+  <Card title={"Access"} href={"/company/access"}>
+    Admins, members, the AI Admin, and API keys.
+  </Card>
+  <Card title={"Workers"} href={"/workers"}>
+    What the AI Admin just created, and how to change it.
+  </Card>
+</Columns>

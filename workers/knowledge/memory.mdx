@@ -1,0 +1,38 @@
+---
+title: "Memory"
+description: "Your worker remembers what you tell it. A note about Acme stays with Acme; a rule for the whole agency applies everywhere."
+---
+
+Your worker remembers what you tell it. A note about Acme stays with Acme. A note about how you like decks written stays with the worker, for every client. A rule for the whole agency applies everywhere. If two notes disagree, the more specific one wins.
+
+## Where a note lives {#levels}
+
+The **Knowledge** tab shows one file tree with a folder per level, narrowest first. The names use your own: for a worker called Nora serving Acme, the folders read *Nora @ Acme (Private)*, *Acme (Client)*, *Nora (Worker)*, *Your agency (Org)*, and *Platform*.
+
+| Folder | Applies to | Example |
+| --- | --- | --- |
+| Private | This worker, in this one context. | Its own working notes. |
+| Client | Every worker serving this client. | Acme reads status notes on their phone: keep them short. |
+| Worker | This worker, for every client. | How Nora formats a meeting prep. |
+| Org | Every worker in your company. | We never quote prices in a client channel. |
+| Platform | Every worker on Ergoly. Written by Ergoly, read-only. | How to file a note; how to use a connected tool. |
+
+## How the worker files a note {#filing}
+
+When it learns something, the worker asks who it is true for: one client, this worker everywhere, or the whole company. It files there, and if it is unsure it files narrower. A client's copy can write only its own client's folder and its private one; your team's copy can write every client's, the worker's, and the company's.
+
+## Corrections {#corrections}
+
+Correct the worker in the thread where the work happened. It fixes the work, writes the rule down in the same turn, and tells you where it put it. A correction about one client goes in that client's folder. A correction about the worker's conduct is proposed as a [behavior](/workers/behaviors) and added after your yes.
+
+## Editing it yourself {#editing}
+
+Everything except the Platform folder is yours to edit. In the memory browser: **New file** (a path such as `notes/pricing.md`, and the content), **Upload a file**, **Edit**, **Delete**. Pick the client in the context picker first to see that client's folder. A change reaches a running worker in about twelve seconds.
+
+- The `always/` folder in each level holds notes the worker reads in full at the start of every conversation. Keep it short: standing rules, not reference material.
+- The persona is not edited here; use the Identity card. Responsibilities and behaviors can be edited here or as cards on Overview, but not deleted.
+- Skills live in each level's `skills/` folder. See [Skills](/workers/knowledge/skills).
+
+<Note>
+  **Worth knowing.** Memory is files, not a database, so you can read it, diff it, revert it, and write it in any editor. Pushing a file through the API is the same as editing it in control. See [Where knowledge lives](/technical/where-knowledge-lives).
+</Note>

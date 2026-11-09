@@ -1,0 +1,31 @@
+---
+title: "Adding a client"
+description: "Three ways: ask your AI Admin, press New Client, or let a worker create one when it joins a channel."
+---
+
+import { SlackScene } from "/snippets/SlackScene.jsx"
+
+## Ask your AI Admin {#admin}
+
+Tell it the client's name and, if you have it, the website. It confirms what it is about to create and does it on your yes.
+
+<SlackScene
+  scene={{"channel":"Ada","kind":"dm","lines":[{"from":"you","name":"Sam","text":"Add Globex as a client. globex.example"},{"from":"worker","name":"Ada","text":"I'll create the client Globex with globex.example as its website, which gives it a logo and a description. No worker is assigned yet; tell me which one when you're ready. OK?"},{"from":"you","name":"Sam","text":"OK"},{"from":"worker","name":"Ada","text":"Done. Globex is in the tray on your Company chart until someone places it."}]}}
+  channels={[]}
+/>
+
+## In control {#control}
+
+1. Open **Clients** and press **New Client**, or open **Company**, press **Add**, and choose **Client**.
+2. Type the **Company name**. The slug under it is the client's short name in URLs; click it to change it.
+3. Add the **Website URL** if you have it. Ergoly uses it for the logo and a public description.
+4. Optionally paste a **Slack Channel ID** for the channel you share with the client. You can do this later from the worker instead.
+5. Press **Create client**.
+
+## From a channel {#channel}
+
+When a worker joins a channel and no client matches, it offers **New client…**. That creates the client and maps the channel to it in one step. See [Slack](/workers/channels/slack).
+
+<Note>
+  **Worth knowing.** A client with no worker assigned does nothing. The next step is [assigning a worker](/clients/assigning-a-worker).
+</Note>

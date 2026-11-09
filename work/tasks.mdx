@@ -1,0 +1,41 @@
+---
+title: "Tasks"
+description: "A piece of work with someone who asked and someone doing it. Hand it to a worker or a person, follow it on its log, and say where the result goes."
+---
+
+import { SlackScene } from "/snippets/SlackScene.jsx"
+
+A **task** has a **requester** (who asked), a **holder** (who is doing it), and a **log** (every handoff, comment, state change and run). Workers and people can be either. Handing a task to another worker is the only way one worker asks another for something.
+
+## From Slack {#slack}
+
+Ask in plain words. Work the worker cannot finish in one go, or work that belongs to someone else, becomes a task. It names the holder, and from then on the task's log is where the work is tracked.
+
+<SlackScene
+  scene={{"channel":"acme-internal","kind":"channel","lines":[{"from":"worker","name":"Nora","text":"Acme asked whether the launch can move a week. That's a scope and budget call, so I've opened a task and handed it to @Sam: Acme launch date — move one week? I'll reply to Acme once you decide."},{"from":"you","name":"Sam","text":"Yes, one week is fine. Confirm with them and update the plan."},{"from":"worker","name":"Nora","text":"Resolved. I've told Acme Thursday the 30th, and moved every date in the plan a week."}]}}
+  channels={["acme-internal"]}
+  caption={"A person's comment on a task wakes the worker. The worker's own comments wake nobody."}
+/>
+
+## The Tasks page {#page}
+
+Three tabs, each with a count: **Scheduled**, **In progress**, **Closed**. Columns: Task, Runs on (the worker), Requester, Holder, Due (marked *Late* when past), Schedule. A task's own page shows its state, the people on it, where results go, its **Log**, and its **Run history**, with buttons for a person: **Start**, **Resolve**, **Hand off…**, **Decline**, and **Cancel task**.
+
+## States and outcomes {#states}
+
+| State | Meaning |
+| --- | --- |
+| Scheduled | Not started yet: it has a schedule or a start time. |
+| In progress | Someone holds it. |
+| Closed · resolved | The requester is satisfied. |
+| Closed · declined | The holder said no. Only the holder can decline. |
+| Closed · cancelled | Withdrawn. |
+| Closed · archived | No activity for the company's archive period (30 days by default; Settings → Tasks). |
+
+## Where results go {#results}
+
+A task names where its results go: a Slack channel the worker is in, a person (by DM), or nowhere, in which case the result stays on the log. A task scheduled from a DM sends its result back to that person. A task about a client can only be handed to a worker serving that client, or to a person.
+
+<Note>
+  **Worth knowing.** The worker works a task by scoping it, planning and doing it, checking its own result, and resolving. After two attempts that still fall short, it hands the task to a person rather than trying a third time.
+</Note>

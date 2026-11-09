@@ -1,37 +1,66 @@
-> **First-time setup**: Customize this file for your project. Prompt the user to customize this file for their project.
 > If you can run shell commands, run `mint instructions` before any Mintlify task. It prints current guidance for this CLI version. Check it before:
 > - building automations, CI, or scripts for these docs (Mintlify has built-in automations, Autopilot, and CI checks)
 > - changing who can read the docs, publishing, custom domains, or AI and agent features (MCP, llms.txt, skill.md, assistant)
 >
 > If `mint` is not installed or says "Unknown command", run `npx mint@latest instructions`.
-> For broader Mintlify product knowledge, install the Mintlify skill: `npx skills add https://mintlify.com/docs`
+> The CLI needs Node 20.17 or newer; `.tool-versions` pins Node 22 for asdf.
 
-# Documentation project instructions
+# Ergoly docs
 
-## About this project
+The public documentation and changelog for Ergoly, served at https://docs.ergoly.ai. Built on [Mintlify](https://mintlify.com): pages are MDX files with YAML frontmatter, configuration lives in `docs.json`, a push to `main` deploys.
 
-- This is a documentation site built on [Mintlify](https://mintlify.com)
-- Pages are MDX files with YAML frontmatter
-- Configuration lives in `docs.json`
-- Use the Mintlify MCP server, `https://mcp.mintlify.com`, to edit content and settings via MCP
-- Use the Mintlify docs MCP server, `https://www.mintlify.com/docs/mcp`, to query information about using Mintlify via MCP
+The pages were moved here from the website (growth/website-ergoly, `src/lib/docs/` and `src/lib/changelog.ts`) on 2026-11-08. This repo is now the only source; the website only redirects.
+
+## Who reads this
+
+The person who runs an agency on Ergoly. Write for them, in the words the control app uses. Engineers reading the API get the Technical details section, where internal words are defined once.
 
 ## Terminology
 
-{/* Add product-specific terms and preferred usage */}
-{/* Example: Use "workspace" not "project", "member" not "user" */}
+- **Worker**, never "AI teammate", "agent" or "bot". A worker is an AI member of the company.
+- **Company**, never "organization" or "org", except once in the glossary as the API's name for it.
+- **Client**: a customer of the agency. Acme and Globex are the example clients.
+- **AI Admin**: the built-in worker that sets things up. Ada in examples.
+- The cast of the examples: Nora (worker), Ada (AI Admin), Sam (you), Priya (teammate), Daniel at Acme, Mei at Globex.
+- **control** (lower case, no article) is the web app at control.ergoly.ai.
+- Internal names (organization, gateway, runtime, event, turn) appear only under Technical details.
 
-## Style preferences
+## Style
 
-{/* Add any project-specific style rules below */}
+- Second person, present tense, one idea per sentence.
+- The reader's situation before the mechanism: what they want to do, then how.
+- Sentence case for headings. Headings carry an explicit id: `## Placing and moving {#place}`. Keep ids stable; they are the anchors other pages and the website link to.
+- Bold for UI elements: press **Create client**. Code formatting for paths, commands and file names.
+- Callouts: `<Note>**Worth knowing.** …</Note>` for the thing that surprises people. `<Warning>**Coming soon.** …</Warning>` at the top of a page about a feature that has not shipped, with `tag: "SOON"` in the frontmatter.
+- Related pages as cards: `<Columns cols={2}><Card title href>hint</Card></Columns>`.
+- A Slack conversation uses the `SlackScene` snippet: `import { SlackScene } from "/snippets/SlackScene.jsx"`, then `<SlackScene scene={{ channel, kind, lines: [{ from, name, text }] }} channels={[…]} caption="…" />`. `from` is one of `you`, `worker`, `team`, `client`. Names in `snippets/SlackScene.jsx`'s PORTRAITS list get a face from `/images/people`.
+- Diagrams are static SVGs under `/images/diagrams`, placed in a `<Frame caption>`.
 
-- Use active voice and second person ("you")
-- Keep sentences concise — one idea per sentence
-- Use sentence case for headings
-- Bold for UI elements: Click **Settings**
-- Code formatting for file names, commands, paths, and code references
+## Changelog
+
+One page per entry, so each release has a link of its own, plus the index at `/changelog` which shows every entry with filters and an RSS feed.
+
+Entries are written by hand from the matching file in the kb repo (`kb/product/changelog/<id>.md`), and only from one marked `visibility: public`. The kb entry's "Internal" section never comes here. `<id>` is `YYYY-MM-DD-slug`, the kb filename without `.md`, and is the permalink: once live, it does not change.
+
+To add an entry:
+
+1. Write the body in `snippets/changelog/<id>.mdx`: the opening paragraph, then `## Feature title` and a paragraph per feature, then `## Improvements` and `## Fixes` as bullet lists of `**Title.** body`. No frontmatter, no H1.
+2. Create `changelog/<id>.mdx` with frontmatter `title`, `sidebarTitle` (the date, "November 2, 2026"), `description` (one or two sentences), an import of the snippet, the date in italics, and the imported component.
+3. Add an `<Update>` block at the top of `changelog.mdx`, newest first: `label` is the date, `description` the title, `tags` the sections the entry has (Features, Improvements, Fixes), `rss` the title, description and date. Inside: the imported component and a `[Link to this entry](/changelog/<id>)` line.
+4. Add `changelog/<id>` to the Changelog group in `docs.json`, right after `changelog`.
+
+Copy an existing entry to get the shape right.
 
 ## Content boundaries
 
-{/* Define what should and shouldn't be documented */}
-{/* Example: Don't document internal admin features */}
+- Do not invent product facts. If a page needs a fact that is not in control, the kb repo or an existing page, leave a `{/* TODO: … */}` comment and say so.
+- Nothing internal: no roadmap, no customer names, no numbers from the business.
+- The API documents itself at https://control.ergoly.ai/api/v1; the Technical details pages describe it but do not duplicate the reference.
+
+## Checks
+
+```bash
+mint validate
+mint broken-links --check-anchors --check-redirects
+mint dev --no-open
+```

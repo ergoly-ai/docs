@@ -1,0 +1,25 @@
+---
+title: "Client channels"
+description: "A channel that belongs to one client. The worker answers there as your agency, from that client's world and nothing else."
+---
+
+A **client channel** is mapped to one client. The copy of the worker that answers there has that client's memory, that client's connections, and the people linked to that client. It has never seen another client's channel, and nothing typed in the channel can change that.
+
+## Mapping a channel to a client {#map}
+
+- When the worker joins and asks, press the suggested client, or **An existing client…**, or **New client…**.
+- On the worker's **Clients** tab, press **Add to client**, pick the client, and tick the channel. Or **Add channel**, then assign it by client slug.
+- On the client's own page, press **Bind a Worker** and tick the channel.
+- Ask your AI Admin: *#globex is Globex's channel*.
+
+## Moving a channel {#move}
+
+A channel already mapped to one client is never taken over from the join buttons. To move it, use **Reassign** on the worker's Clients tab; control asks you to confirm, so a move is always something you asked for twice.
+
+## Shared channels {#shared}
+
+A client channel is usually a Slack Connect channel shared with the client's workspace. The worker answers the client's people there. It does not need them to be linked to the client for that; the channel decides. Linking matters for [DMs](/workers/channels/slack/dms).
+
+<Note>
+  **Worth knowing.** Only a workspace admin can add a worker to a channel. A client contact who invites it gets *only workspace admins can add me to a new channel*, and the worker leaves.
+</Note>

@@ -1,0 +1,32 @@
+This release is about how workers reach the rest of your stack. A new connections system gives every worker access to hundreds of ready-made apps — Google Sheets, HubSpot, Linear and many more — along with custom MCP servers and any service with an API key, all managed from one Connections page.
+
+## A single Connections page
+
+Each connection now shows what it is, which account is signed in, where it's used and whether it's healthy. Click one to finish setting it up or change it. Older connections move to a Legacy tab and keep working exactly as before.
+
+## The full app catalog
+
+Adding a connection opens a picker organized by category, with popular apps up front and the entire catalog one click away. Custom MCP servers, your own OAuth app and raw API keys are always options.
+
+## Any API, by key
+
+A service that isn't in the catalog can be connected with its API key from the same page. The key is stored securely and the worker can use that service's full API through it.
+
+## One way to use every tool
+
+Workers list, search and run whatever their connections provide through a single built-in skill, with no per-service setup. Every turn, a worker knows exactly what it has access to.
+
+## Progress you can read
+
+Progress updates now read as narrated reasoning: each step in plain English, a header that describes the work, and a clean close when the turn ends. No more internal step names.
+
+## Improvements
+
+- **DM anyone.** A worker asked to message a colleague can now DM anyone the bot can see, not only people tied to a client. If a delivery fails, the notice names the person rather than showing a Slack ID.
+- **Set the escalation contact.** Choose who a worker escalates to directly in its settings.
+- **Inbound webhooks.** Workers can create their own inbound webhook endpoints, so events from outside services can kick off work.
+
+## Fixes
+
+- **Authenticated calls.** Some outbound requests — web searches among them — were going out without their credentials and failing. Every credentialed call is now authenticated correctly.
+- **API key page redirect.** Admins who hadn't finished setup were bounced to the setup flow when creating an API key. The settings page now stays put.

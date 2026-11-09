@@ -1,0 +1,25 @@
+---
+title: "Connections"
+description: "How a worker uses the tools it has been given. The tools themselves are set up under Work."
+---
+
+import { SlackScene } from "/snippets/SlackScene.jsx"
+
+A worker uses whatever **connections** reach it: apps your company has connected and placed with the company, with this worker, with a client, or with this worker for one client. The worker's **Connections** tab lists the apps that reach it in the chosen context, and nothing else.
+
+It never holds a password or a key. It calls the app by name, and Ergoly supplies the credential on the way out. Connect and place apps on the company's **Connections** page; the worker's tab is a view of the result.
+
+## From Slack {#slack}
+
+A worker can also ask for a connection itself, within its own reach. For an app that signs in, it posts a link anyone in the conversation can open; for an app that takes a key, you paste the key in the thread and it goes straight to the vault, never echoed back. A client's copy can place a connection only with itself for that client, or with that client.
+
+<SlackScene
+  scene={{"channel":"acme-internal","kind":"channel","lines":[{"from":"you","name":"Sam","text":"@Nora you'll need Acme's HubSpot for this."},{"from":"worker","name":"Nora","text":"I'll connect HubSpot for Acme only. Here's the sign-in link; it works for a few minutes. Once someone signs in, I can read Acme's pipeline.","card":{"title":"Connect HubSpot to Nora for Acme","lines":["Opens a sign-in in a new tab","Placed with: Nora for Acme"]}}]}}
+  channels={["acme-internal"]}
+/>
+
+<Columns cols={2}>
+  <Card title={"Connections, under Work"} href={"/work/connections"}>
+    Connecting a tool, placement, keys, custom tools, credential safety.
+  </Card>
+</Columns>

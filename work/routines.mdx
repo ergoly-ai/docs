@@ -1,0 +1,40 @@
+---
+title: "Routines"
+description: "A task that repeats. Describe it once, say where results go, and point it at every client it should run for."
+---
+
+import { SlackScene } from "/snippets/SlackScene.jsx"
+
+A **routine** is a task with a schedule. Every weekday at 9, the first of the month, every hour. It runs on the worker you name, posts where you said, and keeps a run history. In control, routines live on the **Tasks** page under **Scheduled**.
+
+## From Slack {#slack}
+
+<SlackScene
+  scene={{"channel":"acme-internal","kind":"channel","lines":[{"from":"you","name":"Sam","text":"@Nora every weekday at 9 Pacific, post Acme's status note here."},{"from":"worker","name":"Nora","text":"Scheduled: Acme status note, weekdays at 09:00 America/Los_Angeles, results posted in #acme-internal. First run is tomorrow. Say pause the status note to pause it."}]}}
+  channels={["acme-internal"]}
+  caption={"The worker repeats the schedule, the time zone, and where results go. Without a destination it will not schedule."}
+/>
+
+Say when, and say where results go. If you leave out the time zone the worker asks; if you leave out the destination it refuses, because a routine that posts nowhere is a routine nobody sees. Asking for the same routine again replaces it rather than making a second one.
+
+## From control {#control}
+
+Press **New task** on the Tasks page: the **Worker**, a **Title**, the **Prompt** (what the worker should do, written so it makes sense on its own), **Scope** (Internal or a client), a **Schedule** (**Once** or **Recurring**: every few minutes, hourly, daily, weekly, monthly, or a cron expression), a **Timezone**, and an optional **Slack channel**. Leave the channel blank and the result stays on the run log.
+
+## Running across clients {#clients}
+
+One routine can run for several clients, each on that client's own copy of the worker, each posting to that client's channel. On the task's page, the **Clients** card has **Add a client**; each client can have its own channel and time zone, and can be ticked on or off. From Slack, ask your team's copy: *run it for Acme and Globex*. A client's copy cannot fan out; it only knows one client.
+
+## Pausing and cancelling {#pause}
+
+- *Pause the Monday report* pauses it. The schedule is kept; on resume it runs from now without catching up.
+- *We don't want it any more* cancels it for good.
+- In control: **Disable** / **Enable** or **Delete** on the row's Actions menu, and **Run now** to run it immediately.
+
+## Run history {#history}
+
+Every run is listed on the task's page and on each client's Tasks tab, with started, finished, duration, worker, client, where it posted, and any error. Filter by worker, client, or status.
+
+<Note>
+  **Worth knowing.** The routine's prompt is read by the worker's future self with no conversation around it. Write it the way you would brief someone on their first day: what, for whom, where it goes.
+</Note>

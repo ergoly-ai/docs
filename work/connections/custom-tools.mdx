@@ -1,0 +1,15 @@
+---
+title: "Custom tools"
+description: "Any tool server by its URL, or any API by its base URL, when the catalog does not list the app."
+---
+
+The catalog covers most apps. For anything else, **Add Connection** offers two other ways in, under the search results.
+
+- **A tool server**: Paste an `https://` URL. The server says how it signs in: a hosted sign-in, a key, or nothing. Once connected, Ergoly reads the tools it offers, and your workers get them as actions, the same as a catalog app.
+- **An API key for another app**: Paste the API's **base URL**, your key, and the **header the key is sent in**. Workers can then call any endpoint on that API. Add a link to its docs and workers read them to learn the endpoints.
+
+Both are placed like any other connection, and both keep the credential out of every worker's reach.
+
+<Note>
+  **Worth knowing.** Give the API's documented base URL, not its website. A key is attached to the hostname you give, and a request that gets redirected to a different host leaves the key behind.
+</Note>

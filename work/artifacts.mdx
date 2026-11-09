@@ -1,0 +1,33 @@
+---
+title: "Artifacts"
+description: "A web page a worker publishes with a link: a report, a dashboard, a one-pager. Private to your company by default, or open to anyone with the link."
+---
+
+import { SlackScene } from "/snippets/SlackScene.jsx"
+
+## Creating one {#creating}
+
+Ask the worker for anything you would rather pass around as a link: a report, a dashboard, a chart, a comparison, a one-pager, a calculator. It builds a self-contained page, publishes it, and replies with the link and whether it is private or public. Ask for changes and a new version appears at the same link.
+
+<SlackScene
+  scene={{"channel":"acme-internal","kind":"channel","lines":[{"from":"you","name":"Sam","text":"@Nora turn the Q3 numbers into a one-page dashboard I can send to Acme."},{"from":"worker","name":"Nora","text":"Published, private to your company: control.ergoly.ai/youragency/a/k8f2…  Say make it public and anyone with the link can open it.","card":{"title":"Acme · Q3 dashboard","lines":["Private · People in Your agency","Location: Acme"],"kind":"link"}}]}}
+  channels={["acme-internal"]}
+/>
+
+## Publishing and locations {#publishing}
+
+Every artifact has a **Location**: your company, or one client. The location decides which workers can find and read it: all of them, or only that client's. A new artifact's location follows the worker that made it. Any signed-in member of your company can open every artifact, whatever its location. The **Artifacts** page lists them all, with filters for author, location and sharing.
+
+## Privacy and sharing {#permissions}
+
+On the artifact's page, the **Sharing** popover offers **Private** (people in your company) or **Public** (anyone with the link, no sign-in). New artifacts are private. There is no delete: setting an artifact back to private is how you take it down.
+
+<Note>
+  **Worth knowing.** A page can hold a lot: up to 4.5 MB, with charts and tables. It cannot hold live data, forms, or anything that stores what a reader types.
+</Note>
+
+<Columns cols={2}>
+  <Card title={"Collaboration"} href={"/work/artifacts/collaboration"}>
+    Coming soon.
+  </Card>
+</Columns>

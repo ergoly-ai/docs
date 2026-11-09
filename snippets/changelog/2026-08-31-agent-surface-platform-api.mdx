@@ -1,0 +1,36 @@
+Three large changes this week — a public API, a simpler worker underneath every teammate, and scheduled tasks rebuilt — plus a sweep of reliability fixes.
+
+## The platform API
+
+Everything in your Ergoly environment — workers, clients, channel mappings, tasks, spend and connections — can now be read and changed through an organization-scoped REST API. Create and set up workers, map channels, schedule tasks and write memory with an API key. The API reference is linked from the control panel.
+
+## A simpler, more consistent worker
+
+Every worker now runs on the same small set of core tools, with everything else expressed as skills it reads and follows. Workers behave the same way across your organization and are easier to extend.
+
+## Scheduled tasks, rebuilt
+
+Each run gets its own Slack thread and can be interrupted with a reply. Tasks run as a named person, can target several clients from one definition, and can be seen and managed in the control panel.
+
+## The Company page
+
+A new page in the control panel shows your workers, people and teams as an org chart. Create teams and open roles, add people from Slack, and drag to reorganize.
+
+## Workers can read app messages
+
+When an app posts a rich message in Slack — a Linear card, a form submission, an alert — the worker now receives the whole thing, not just the one-line preview.
+
+## Improvements
+
+- **Choose your avatar style.** Pick your organization's avatar style in settings; it applies to every worker straight away.
+- **App icons set automatically.** Installing a worker into Slack now sets its icon for you, with a button to re-push it if it changes.
+
+## Fixes
+
+- **Long turns complete.** A model step longer than a minute could derail a turn. Long turns now finish correctly.
+- **Separate conversations for parallel runs.** Runs of a scheduled task that fired at the same time could share one conversation. Each run now gets its own.
+- **Usage metering.** Per-customer usage was being under-recorded. It's now accurate.
+- **No more stuck approvals.** A stuck approval state could hold a worker indefinitely. The cause is fixed.
+- **Client channels recognized.** Workers sometimes treated a client channel as a private DM and declined to use that client's connections. Fixed.
+- **Timeouts named correctly.** A scheduled task that ran out of time now reports a timeout, not a generic failure.
+- **Control panel stability.** Crashes on the organization dashboard and the worker page are resolved.

@@ -1,0 +1,29 @@
+---
+title: "Internal client channels"
+description: "Backstage: a channel of your own where the team reviews a worker's drafts for a client before the worker is in front of that client."
+---
+
+import { SlackScene } from "/snippets/SlackScene.jsx"
+
+Before a worker talks to Acme directly, give it a channel where your team can see what it would say. That channel is **internal**, because only your people are in it, but the work in it is about one client.
+
+## Setting it up {#setup}
+
+1. Create the channel in Slack with your own people in it.
+2. Invite the worker. When it asks what the channel is for, press **Internal channel**, not the client.
+3. Ask the worker for the client's work there: *draft Acme's weekly status*. Your team's copy answers, with Acme's folder in reach, so the draft is about Acme.
+4. When the drafts are right, invite the worker to the channel Acme is in, and set that one up for Acme.
+
+<SlackScene
+  scene={{"channel":"acme-internal","kind":"channel","lines":[{"from":"you","name":"Sam","text":"@Nora draft Acme's weekly status for Monday. Don't send anything."},{"from":"worker","name":"Nora","text":"Draft below. Blocked first, 131 words. Tell me what to change and I'll keep the rule for Acme.","card":{"title":"Acme · weekly status · draft","lines":["Blocked: launch date needs Acme's sign-off","In progress: 14 of 22 pages","Done: identity approved"]}},{"from":"team","name":"Priya","text":"Good. Swap the second line for the legal edits, then it's ready."}]}}
+  channels={["acme-internal"]}
+  caption={"The team reviews in the internal channel. Nothing reaches Acme until someone sends it."}
+/>
+
+## Why it is internal {#why}
+
+Because your team's copy answers there, it knows the whole company: every client, every connection placed with the company. That is what you want backstage. In Acme's own channel, only Acme's copy answers, which knows less, on purpose. See [Client separation](/clients/separation).
+
+<Note>
+  **Worth knowing.** Keep client contacts out of the internal channel. The channel decides who is answered, so a guest in an internal channel would be answered by your team's copy.
+</Note>

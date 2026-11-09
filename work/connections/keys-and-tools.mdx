@@ -1,0 +1,29 @@
+---
+title: "Keys and tools"
+description: "What happens when you paste a key, and what a worker can then do with the app."
+---
+
+import { SlackScene } from "/snippets/SlackScene.jsx"
+
+Some apps are connected by signing in. Others take an **API key** you paste. Either way the result is the same to a worker: an app it can use by name.
+
+## A pasted key {#key}
+
+Choose **Use a key** when connecting. The key is checked once, with one read that succeeds with the key and fails without it, so a wrong key is refused on the spot. A key that passes is stored and never shown again, not to you and not to any worker. A worker that needs it calls the app, and Ergoly supplies the key on the way out.
+
+## What a worker does with an app {#tools}
+
+A connected app gives a worker a set of actions: read a deal, create a page, search a folder. Each turn, the worker is shown the connections that reach it, with your description of each. It picks the one that fits, calls it by name, and reports what it did. Two connections of the same app at the same placement are both offered, and the worker says which one it used.
+
+<SlackScene
+  scene={{"channel":"acme","kind":"channel","lines":[{"from":"client","name":"Daniel · Acme","text":"@Nora how many open deals do we have over $50k?"},{"from":"worker","name":"Nora","text":"Seven, totalling $612k. Three are past their close date; I've listed them in the thread. Read from Acme's HubSpot."}]}}
+  channels={["acme"]}
+/>
+
+## When a key stops working {#expired}
+
+If the app refuses the key, the connection's status becomes **Expired** and the worker tells whoever asked that the app needs reconnecting. **Reconnect** on the Connections page takes a new key or a fresh sign-in.
+
+<Note>
+  **Worth knowing.** A key pasted into a Slack thread goes straight into the vault and is never echoed back. Still, prefer pasting keys in control when you can.
+</Note>

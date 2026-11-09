@@ -1,0 +1,38 @@
+---
+title: "Behaviors"
+description: "What a worker follows day to day, as Avoid, Don't, Prefer and Use lines. Read every turn, changed only by agreement."
+---
+
+import { SlackScene } from "/snippets/SlackScene.jsx"
+
+A worker's **behaviors** are the rules it follows in every conversation. They are written as four kinds of line, and the file itself explains them:
+
+- **Avoid**: Not without a good reason.
+- **Don't**: There is never a good reason.
+- **Prefer**: Names the better option, and the one to watch for.
+- **Use**: A positive instruction.
+
+```text "Four lines from a behaviors file"
+- Don't send anything to a client's mailing list without approval.
+- Avoid scheduling calls before 10:00 in the client's time zone.
+- Prefer a one-screen summary over an attachment; watch for decks over ten slides.
+- Use the client's own product names, never ours.
+```
+
+## Where they live {#cards}
+
+On the **Overview** tab, the **Behaviors** card shows the list and the **When they conflict** card shows what the worker does when two rules collide. Both are one file in the worker's memory. Edit either card with the pencil, or edit the file in the Knowledge tab.
+
+## Changing them from Slack {#changing}
+
+Tell the worker how you want it to behave, in the thread. It proposes the exact line and adds it only after your explicit yes, then records who agreed and when. A rule you state once in a conversation about Acme is a fact about Acme and goes in Acme's memory instead; a rule about how the worker behaves everywhere goes here.
+
+<SlackScene
+  scene={{"channel":"globex-internal","kind":"channel","lines":[{"from":"team","name":"Priya","text":"@Nora never quote prices in a client channel. Send them to me first."},{"from":"worker","name":"Nora","text":"Understood. Proposed behavior: Don't quote prices in a client channel; send them to the account lead first. Add it?"},{"from":"team","name":"Priya","text":"Add it."},{"from":"worker","name":"Nora","text":"Added. It applies to every client from my next message."}]}}
+  channels={["globex-internal"]}
+  caption={"A behavior applies everywhere the worker works. A client preference stays with the client."}
+/>
+
+<Note>
+  **Worth knowing.** The worker reads its behaviors at the start of every turn, so a saved line is in force immediately. There is no deploy.
+</Note>

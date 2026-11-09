@@ -1,0 +1,31 @@
+---
+title: "Email"
+description: "Every worker has an email address and can send from it. Receiving is coming soon."
+---
+
+import { SlackScene } from "/snippets/SlackScene.jsx"
+
+Each worker has an email address under a sending domain Ergoly sets up for your company when your first worker is built. It looks like `nora@youragency.ergoly-mail.com`. A client's copy has its own, with the client's name in it, so mail about Acme comes from Acme's copy. Mail goes out under the worker's name.
+
+## Sending {#sending}
+
+Ask the worker to email someone and it does, with to, cc and bcc, attachments up to about 3 MB, and replies into an existing thread. It sends at most five emails a minute and to at most a hundred recipients at once. Every email it sent is listed on the worker's **Settings** tab under **Email**, with when, from, subject and status.
+
+<SlackScene
+  scene={{"channel":"acme-internal","kind":"channel","lines":[{"from":"you","name":"Sam","text":"@Nora email Daniel the status one-pager, cc me."},{"from":"worker","name":"Nora","text":"Sent to daniel@acme.example from nora.acme@youragency.ergoly-mail.com, cc Sam, subject Acme rebrand — status, 22 Oct, with the one-pager attached."}]}}
+  channels={["acme-internal"]}
+/>
+
+## Switching it off {#off}
+
+The same card has a kill switch: **Switch email off** stops the worker sending anything until you switch it back on.
+
+## The domain {#domain}
+
+Under **Settings → Email** for the company you can see the domain's status, the records Ergoly published for it, and **Re-check now**. You do not set anything up yourself.
+
+<Columns cols={2}>
+  <Card title={"Receiving email"} href={"/workers/channels/email/receiving"}>
+    Coming soon.
+  </Card>
+</Columns>

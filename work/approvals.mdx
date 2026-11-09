@@ -1,0 +1,28 @@
+---
+title: "Approvals"
+description: "A worker asks before it acts when you tell it to, and on its own for anything hard to undo. The decision is recorded. The activity feed holds everything else."
+---
+
+import { SlackScene } from "/snippets/SlackScene.jsx"
+
+## Asking for approval {#asking}
+
+Tell the worker in plain words: *ask me before sending anything to a client*, *get approval before you change a price*, *confirm with Priya first*. To make the rule permanent, have it added to the worker's [behaviors](/workers/behaviors). A worker also asks on its own for anything with a big consequence that is hard to undo: money, a first send to a client, deleting things, terms, changing who has access.
+
+## Approve and Reject in Slack {#buttons}
+
+The worker posts what it is about to do, with two buttons in the conversation's own words, usually **Approve** and **Reject**. Only the first press counts. The platform replaces the buttons with one line saying who pressed which and when, so the thread is its own record. If someone other than the person it asked presses, the worker asks that person to confirm in the thread.
+
+<SlackScene
+  scene={{"channel":"globex-internal","kind":"channel","lines":[{"from":"worker","name":"Nora","text":"Globex's launch email is drafted for Thursday 8:00 to 1,240 subscribers. Approve to schedule it.","card":{"title":"Approve · Reject","lines":["Launch email · Globex","Thursday 8:00 · 1,240 recipients"]}},{"from":"team","name":"Priya","text":"Approved."},{"from":"worker","name":"Nora","text":"✅ Approve — Priya · Oct 22 at 14:02. Scheduled."}]}}
+  channels={["globex-internal"]}
+  caption={"The buttons retire the moment they are used."}
+/>
+
+## The activity feed {#activity}
+
+The **Activity** page is an append-only log of everything that happens across your company: who did it and when. Entries can never be edited or deleted. Columns: When, Actor, Kind, Summary. Filter by area, or by who did it, where *system* means your workers and your API keys. Every change made with a key is here under the key's name, which is why revoking a key never erases what it did.
+
+<Note>
+  **Worth knowing.** Escalation is different from approval. An approval goes to whoever the worker was told to ask, in the thread. An escalation is a question that needs a person, and goes to the worker's escalation assignee. See [Reporting](/workers/reporting).
+</Note>

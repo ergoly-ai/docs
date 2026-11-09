@@ -1,0 +1,26 @@
+---
+title: "Your first correction"
+description: "Say what you want done differently, once. The worker writes it down and files it with the right client, the right worker, or the whole company."
+---
+
+import { SlackScene } from "/snippets/SlackScene.jsx"
+
+A worker learns the way a new hire does: by being told. You do not configure it. You correct it in the thread where the work happened, and it keeps the rule.
+
+<SlackScene
+  scene={{"channel":"acme-internal","kind":"channel","lines":[{"from":"worker","name":"Nora","text":"Here is the Acme weekly status draft. Three sections: done, in progress, blocked."},{"from":"you","name":"Sam","text":"@Nora Acme reads these on their phone. Lead with blocked, and keep the whole thing under 150 words."},{"from":"worker","name":"Nora","text":"Done, 128 words, blocked first. I've noted for Acme: lead with blocked, under 150 words. I'll keep to that for their status notes from now on."}]}}
+  channels={["acme-internal"]}
+  caption={"The rule is filed with Acme, because it is about Acme. Globex is unchanged."}
+/>
+
+## Where the rule goes {#where}
+
+When a worker learns something, it asks itself who the thing is true for. A client's preference is filed with that client. A better way of doing the job is filed with the worker, so every client benefits. A rule for the whole agency is filed with the company. If it is not sure, it files narrower, and tells you where it put it.
+
+## Checking what it kept {#check}
+
+Everything a worker remembers is a file you can read. Open the worker in control, choose the **Knowledge** tab, and pick the client from the context picker at the top. The note is there, in plain Markdown, and you can edit it. See [Memory](/workers/knowledge/memory).
+
+<Note>
+  **Worth knowing.** A correction about how the worker behaves in general, rather than a fact about a client, belongs in its behaviors. The worker proposes the exact line and adds it only after your explicit yes. See [Behaviors](/workers/behaviors).
+</Note>

@@ -1,0 +1,48 @@
+---
+title: "Skills"
+description: "A saved way of doing a piece of work. Written by you in any editor, or by the worker when it has done something more than once."
+---
+
+import { SlackScene } from "/snippets/SlackScene.jsx"
+
+A **skill** is a procedure saved as a file: a name, a line on when it applies, and the steps. When a worker has reasoned its way through the same job twice, the right move is to write it down, and then it runs the steps next time instead of working them out again.
+
+## What one looks like {#format}
+
+```text "A SKILL.md"
+---
+name: weekly-status-note
+description: Write the weekly status note for a retainer client from the project tracker. Use on Monday mornings or when asked for a status. Stops short of sending it.
+---
+
+1. Pull every item that changed in the client's board since last Monday.
+2. Group into done, in progress, blocked. Blocked first.
+3. Keep it under 150 words. Lead with the blocked item that needs the client.
+4. Post the draft in the client's internal channel and wait.
+```
+
+The same open format coding agents use for their own skills. The description matters most: it is what the worker reads to decide whether the skill applies.
+
+## Where a skill lives {#where}
+
+A skill sits in the `skills/` folder of one memory level, and that decides who has it: one client, one worker, or the whole company. A skill of the same name in a narrower level shadows the broader one, so Acme can have its own way of doing status notes without anyone editing the shared skill. Your skills always beat Ergoly's.
+
+## Writing one yourself {#writing}
+
+1. Write the SKILL.md in Claude Code, Cursor, or any editor.
+2. Put it in the right level: the worker's Knowledge tab, **New file** or **Upload a file** under `skills/<name>/`, or push it through the API.
+3. The worker has it on its next conversation. There is nothing to deploy.
+
+Already have skills written for Claude Code? Hand one to a worker in Slack and say *use this skill*. It rewrites it in its own words, maps the tools it needs to your connections, and offers a test run. For a whole set, ask your AI Admin to import them; it proposes which workers should own which.
+
+## Workers writing their own {#own}
+
+<SlackScene
+  scene={{"channel":"globex-internal","kind":"channel","lines":[{"from":"team","name":"Priya","text":"@Nora that's the third time you've built the renewal summary the same way. Remember how this is done."},{"from":"worker","name":"Nora","text":"Written down as a skill, renewal-summary, in my own folder so it applies for every client. Next time I'll follow those steps rather than working them out."}]}}
+  channels={["globex-internal"]}
+  caption={"The worker writes the skill, checks it, and says where it filed it."}
+/>
+
+<Note>
+  **Worth knowing.** Around thirty skills, a worker is getting broad. Around fifty, split it into two workers with two roles. See [Role](/workers/role).
+</Note>

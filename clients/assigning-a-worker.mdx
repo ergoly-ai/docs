@@ -1,0 +1,33 @@
+---
+title: "Assigning a worker"
+description: "Bind a worker to a client, with at least one channel or person. That creates the client's own copy of the worker."
+---
+
+Assigning a worker to a client creates a separate copy of that worker for that client. The copy starts with the company's knowledge and the worker's own, plus the client's folder, which is empty until the worker learns something. Everything it learns about Acme goes there and nowhere else.
+
+## How {#how}
+
+1. On the client's page, press **Bind a Worker**. Or on the worker's **Clients** tab, press **Add to client**.
+2. Pick the **Worker** (or the **Client**).
+3. Tick the **Channels** that belong to this client, and the **People** who are this client's contacts. At least one of either. The dialog explains the difference: *channels route by conversation, people route their DMs and group DMs*.
+4. Press **Bind worker**.
+
+Control maps the channels, joins the public ones (private ones need you to `/invite` the worker first), links the people, and builds the copy. If building fails, the binding stays and the row offers **Activate** to try again. Or ask your AI Admin: *assign Nora to Globex in #globex*.
+
+## Already taken {#already}
+
+A channel or person already linked to a different client is greyed out. Nothing is moved silently. To move a channel, use **Reassign** on the worker's Clients tab and confirm.
+
+## Removing {#remove}
+
+**Unbind** on the client's Workers tab, or **Remove** on the worker's Clients tab, removes every channel and person link for that pair and everything the worker set up for the client. The client's folder of knowledge stays with the client.
+
+|  | What it reaches |
+| --- | --- |
+| Your team's copy of Nora | Every client's folder, the worker's, the company's |
+| Nora for Acme | Acme's folder, the worker's, the company's |
+| Nora for Globex | Globex's folder, the worker's, the company's |
+
+<Note>
+  **Worth knowing.** Your AI Admin cannot be assigned to a client. It is internal-only by design.
+</Note>

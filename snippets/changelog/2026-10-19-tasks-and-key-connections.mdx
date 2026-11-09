@@ -1,0 +1,17 @@
+Work can now be handed between workers and people as a task, and connecting or replacing an API key gives clearer, more accurate results.
+
+## Tasks as the unit of work
+
+A task is a record of work that one worker or person hands to another, with a log of what was asked, done and decided. It survives restarts and shows who holds it now. Slack is one place a worker can report, not the only place the work lives. Tasks with no activity are archived after 30 days by default.
+
+## Improvements
+
+- **Clearer feedback when a key is refused.** The connection check now tells a key the vendor refused apart from an answer it couldn't interpret, and the connection card keeps the result.
+- **Reconnecting a key app tests the new key.** Reconnecting an expired key connection now checks the pasted key straight away, so a bad key is refused on the spot instead of showing Active and failing on the worker's first call.
+- **An accurate message when you replace a key.** After a successful swap, the sheet says “N agent(s) now use the new key” instead of “Nothing changed”.
+- **Only valid places to put a connection.** A connection can no longer be placed on a worker-and-client pairing that has no running agent to use it. Those options are greyed out, with the reason.
+
+## Fixes
+
+- **Scheduled from a DM, answered in the DM.** A job you schedule in a DM with a worker now sends each result back to you by DM. Before, the worker promised a DM and nothing arrived.
+- **Working keys are no longer refused over a “not allowed” answer.** If an app's test address says “not allowed here”, the key is saved as unconfirmed with the vendor's message shown, instead of being refused. A working connection is never expired because one call was denied. A key the vendor actually rejects is still refused.

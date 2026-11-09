@@ -1,0 +1,419 @@
+---
+title: "Glossary"
+description: "Every term you'll meet while working with Ergoly's workers: what it is, what you use it for, and why it matters. They are the same words control and the rest of the docs use."
+---
+
+<Note>
+  **A note on “client.”** In Ergoly, a client is always *your* client: a company your agency works for. Your own agency is your **company**.
+</Note>
+
+## The basics {#basics}
+
+### Company {#company}
+
+*Also called organization.*
+
+**What it is.** Your agency on Ergoly. Your workers, clients, connections and everything your workers learn belong to it, and nothing in it reaches across to another company.
+
+**Use it for.** Holding what is true for your whole agency: your house style, the tools every worker may use, and who on your team can sign in.
+
+**Why it matters.** Your know-how stays yours. What your workers learn is not pooled with other customers and does not train a shared model.
+
+Read more: [Company](/company)
+
+### Worker {#worker}
+
+*Also called AI teammate.*
+
+**What it is.** An AI member of your company that works inside your Slack. Each worker is its own Slack app with a name, an avatar, a job title and an email address, so you invite it, @-mention it and DM it the way you would a colleague.
+
+**Use it for.** Recurring, well-defined work: status notes, research, first drafts, reports, data clean-up, and client questions answered from what your team already knows. One worker can serve many clients.
+
+**Why it matters.** Your team hands off the work that eats their hours and spends that time on judgment, relationships and new business. Your agency takes on more clients with the people it already has.
+
+Read more: [Workers](/workers)
+
+### AI Admin {#ai-admin}
+
+**What it is.** A worker that works only for your own team and never joins a client's channel. It is the first worker you set up.
+
+**Use it for.** Setting things up from a conversation in Slack: creating workers, adding clients, mapping channels and connecting tools. It proposes each change and waits for your yes.
+
+**Why it matters.** Most of the setup happens in plain words, in the place your team already works.
+
+Read more: [Meet your AI Admin](/getting-started/ai-admin)
+
+### Control {#control}
+
+**What it is.** Ergoly's web app, where your team sees and manages everything: the Company chart, Clients, Workers, Tasks, Artifacts, Connections and Activity.
+
+**Use it for.** Checking and changing your setup, reading and editing what a worker knows, connecting tools, and reviewing what happened.
+
+**Why it matters.** Everything a worker does or knows is visible and editable in one place. Almost all of it can also be done by asking in Slack.
+
+Read more: [Getting started](/getting-started)
+
+## Clients and channels {#clients}
+
+### Client {#client}
+
+**What it is.** A company your agency works for: a name, a website and a logo, plus the Slack channels and people that belong to it. In Ergoly, a client is always *your* client.
+
+**Use it for.** Add each client a worker should help with, then assign a worker to it.
+
+**Why it matters.** Workers always know which client they are working for, so one client's details never show up in another client's work.
+
+Read more: [Clients](/clients)
+
+### A client's copy {#clients-copy}
+
+*Also called sealed room.*
+
+**What it is.** When you assign a worker to a client, that client gets its own copy of the worker, with that client's memory, connections and contacts and nothing of any other client's. Your team talks to its own copy, which knows every client.
+
+**Use it for.** Nothing to manage. A copy is created when you assign a worker, and you still see one worker.
+
+**Why it matters.** You can put one worker in front of many clients with confidence. Which copy answers is decided by a fixed rule, which channel and which person, before the worker reads a word, so nothing typed in a channel can change it.
+
+Read more: [Client separation](/clients/separation)
+
+### Client channel {#client-channel}
+
+**What it is.** A Slack channel mapped to one client, usually a Slack Connect channel you share with them.
+
+**Use it for.** Once the worker's drafts are right, the client talks to it directly here. It answers as your agency, from that client's world and nothing else.
+
+**Why it matters.** Clients get fast, informed answers in the place they already talk to you, and the chore leaves your team's plate.
+
+<Note>
+  **Good to know.** Only a workspace admin can add a worker to a channel. A client contact cannot.
+</Note>
+
+Read more: [Client channels](/workers/channels/slack/client-channels)
+
+### Internal channel {#internal-channel}
+
+**What it is.** One of your team's own channels. The worker that answers there is your team's copy, which knows every client.
+
+**Use it for.** Asking about any account from one place: *what's open for Acme?*, *draft Globex's renewal note*.
+
+**Why it matters.** Your people get answers across every client without switching rooms.
+
+<Note>
+  **Good to know.** The channel decides who is answered, so keep client contacts out of internal channels.
+</Note>
+
+Read more: [Internal channels](/workers/channels/slack/internal-channels)
+
+### Internal client channel {#internal-client-channel}
+
+*Also called backstage.*
+
+**What it is.** An internal channel where your team reviews a worker's drafts for one client before the worker is in front of that client.
+
+**Use it for.** Teaching the worker about the client and checking its drafts. When they are consistently right, invite the worker into the client's channel.
+
+**Why it matters.** You decide, client by client, when a worker is ready to face a client. Nothing reaches the client until someone on your team sends it.
+
+Read more: [Internal client channels](/clients/internal-channels)
+
+### Client contact {#client-contact}
+
+**What it is.** A person on your client's side who is linked to that client in Ergoly.
+
+**Use it for.** Link the people a client has in Slack so that their direct messages and group DMs with a worker reach that client's copy.
+
+**Why it matters.** Each person is answered as part of the client they belong to. Someone outside your workspace who is linked to no client is told, politely, that the worker cannot help.
+
+Read more: [DMs](/workers/channels/slack/dms)
+
+### Company chart {#company-chart}
+
+**What it is.** An org chart of your agency with people and workers side by side, plus open roles, your teams, and the clients and vendors you work with.
+
+**Use it for.** Placing workers the way you place people: in a team, with a title, reporting to someone.
+
+**Why it matters.** When a worker needs a person, it goes to the nearest person above it on the chart.
+
+<Note>
+  **Good to know.** The chart is a picture, not a permission. Placing a worker in a team does not change what it can see.
+</Note>
+
+Read more: [Chart](/company/chart)
+
+### Vendor {#vendor}
+
+**What it is.** An outside company that works for you, such as your accountant or a partner agency, shown on the Company chart with its people.
+
+**Use it for.** Adding the partners your team works with to the chart.
+
+**Why it matters.** Workers can tell your team, your clients and your suppliers apart.
+
+Read more: [Teams](/company/teams)
+
+## Working with workers {#day-to-day}
+
+### Mention {#mention}
+
+**What it is.** Addressing a worker with `@name` in a channel or a thread, the way you would address a colleague.
+
+**Use it for.** Asking for work, giving feedback, or pulling a worker into a conversation. In a channel, a worker always replies in a thread.
+
+**Why it matters.** By default, a mention or a direct message is how a worker knows a message is meant for it.
+
+Read more: [Slack](/workers/channels/slack)
+
+### Response policy {#response-policy}
+
+**What it is.** The two settings that decide when a worker speaks in a channel. **Replies**: only when @-mentioned, or to anything it judges is for it. **Listens when not addressed**: off, or on, which lets it read the channel without replying. Direct messages are always answered.
+
+**Use it for.** Matching each worker to each room: answering everything in one client's channel and only mentions in another. Set it for the whole company, one worker, one client or one copy; the narrowest setting wins. You can also ask a worker in the channel to go quiet.
+
+**Why it matters.** Workers help when it is useful and stay out of side conversations. With nothing set, a worker replies only when mentioned.
+
+Read more: [Response policy](/workers/response-policy)
+
+### Approval {#approval}
+
+**What it is.** A worker asking before it acts, with **Approve** and **Reject** buttons in the thread.
+
+**Use it for.** Tell it in plain words, such as *ask me before sending anything to a client*. It also asks on its own before anything hard to undo: money, a first send to a client, deleting things, terms, or a change to who has access.
+
+**Why it matters.** Your team keeps the final say on anything with consequences, and the thread records who decided and when.
+
+Read more: [Approvals](/work/approvals)
+
+### Escalation assignee {#escalation-assignee}
+
+**What it is.** The person a worker takes a question to when it needs a human. By default, the nearest person above it on the Company chart.
+
+**Use it for.** Choose someone else on the worker's Settings tab when the chart does not say who should answer.
+
+**Why it matters.** Questions reach the right person instead of stalling.
+
+Read more: [Reporting](/workers/reporting)
+
+### Triage {#triage}
+
+**What it is.** The tab on a worker's page in control that shows whether it is awake, what it has been saying, and a **Restart Worker** button.
+
+**Use it for.** When a worker is slow, silent or stuck: first send `stop` in the thread, then use Restart Worker. If it stays silent in a channel, check its response policy and whether the channel is set up.
+
+**Why it matters.** Most problems are fixed in a minute, by anyone on your team.
+
+<Note>
+  **Good to know.** A sleeping worker is normal. It sleeps after a few quiet minutes and wakes on the next message, so the first reply after a pause can take a few seconds longer.
+</Note>
+
+Read more: [Triaging](/workers/triaging)
+
+## Teaching workers {#teaching}
+
+### Role {#role}
+
+**What it is.** A worker's job title and what the job is for: *Account Manager*, *SEO Analyst*, *Bookkeeper*.
+
+**Use it for.** Deciding how many workers you need. If two jobs would be done by two different people at your agency, judged by different standards, make two workers.
+
+**Why it matters.** A worker with a clear title asks fewer questions and does its job more consistently.
+
+Read more: [Role](/workers/role)
+
+### Responsibilities {#responsibilities}
+
+**What it is.** The list of what a worker is trained for and accountable for. Think of it as its job description.
+
+**Use it for.** Defining the job. A draft is written for you when you create the worker; edit it any time. A request outside the list is flagged as outside its job.
+
+**Why it matters.** Everyone knows what each worker is for. A worker never changes its own list: it proposes a change and records who agreed and when.
+
+Read more: [Responsibilities](/workers/responsibilities)
+
+### Behaviors {#behaviors}
+
+**What it is.** The rules a worker follows in every conversation, written as four kinds of line: **Avoid**, **Don't**, **Prefer** and **Use**.
+
+**Use it for.** Setting *how* the work is done, for example *Don't send anything to a client's mailing list without approval*.
+
+**Why it matters.** Consistent conduct with every client. A saved line is in force from the worker's next turn, and changes need a person's yes.
+
+Read more: [Behaviors](/workers/behaviors)
+
+### Memory {#memory}
+
+*Also called knowledge.*
+
+**What it is.** What a worker remembers, kept as plain files in folders that decide who a note applies to: **Private** (the worker's own notes), **Client** (one client), **Worker** (this worker, for every client), **Company** (every worker) and **Platform** (Ergoly's defaults, read-only).
+
+**Use it for.** Telling a worker something once. It files the note where it belongs, and your team can read, edit or add files on the worker's Knowledge tab.
+
+**Why it matters.** Nobody explains the same thing twice. When two notes disagree, the more specific one wins, so a client's preference beats your agency's default.
+
+Read more: [Memory](/workers/knowledge/memory)
+
+### Correction {#correction}
+
+**What it is.** Telling a worker, in the thread where the work happened, what was wrong and how you want it.
+
+**Use it for.** Any time a draft misses: *board one-pagers for Acme should fit on one screen*.
+
+**Why it matters.** The worker fixes the work, writes the rule down in the same turn and tells you where it filed it. A lesson about the job reaches every client; a fact about one client stays with that client.
+
+Read more: [Memory](/workers/knowledge/memory)
+
+### Skill {#skill}
+
+**What it is.** A saved way of doing a piece of work: a name, a line on when it applies, and the steps, in one file.
+
+**Use it for.** Capturing a process your agency repeats, like the weekly status note. Write one in any editor, hand a worker one you already use with Claude Code, or let it write its own after doing a job twice. A skill can belong to one client, one worker or the whole company.
+
+**Why it matters.** The job is done the same way every time. A client can have its own version of a skill without anyone changing the shared one.
+
+Read more: [Skills](/workers/knowledge/skills)
+
+## Tools and access {#tools}
+
+### Connection {#connection}
+
+*Also called connector, integration.*
+
+**What it is.** An app your workers can use: a CRM you signed in to, an API you pasted a key for, or a tool server at a URL.
+
+**Use it for.** Press **Add Connection** in control and pick from a catalog of more than 1,500 apps, or let a worker post a sign-in link in Slack. Apps outside the catalog can be added by their tool server or API address.
+
+**Why it matters.** Workers do the work in your real tools instead of asking someone to copy and paste. You can reconnect or remove a connection at any time.
+
+Read more: [Connections](/work/connections)
+
+### Placement {#placement}
+
+**What it is.** Who may use a connection: **one worker for one client** (the default), **one client**, **one worker**, or the **whole company**. When the same app is connected twice, the narrowest match wins.
+
+**Use it for.** Placing each client's own accounts with that client, and the tools everyone uses with the whole company.
+
+**Why it matters.** A connection placed with one client is never used for another client's work.
+
+<Note>
+  **Good to know.** A whole-company connection reaches every worker for every client, so place client accounts with the client.
+</Note>
+
+Read more: [Placement](/work/connections/placement)
+
+### Vault {#vault}
+
+*Also called key vault.*
+
+**What it is.** Where Ergoly keeps your passwords and API keys. When a worker calls an app, a gateway adds the credential to the request on the way out; the worker never holds it.
+
+**Use it for.** Nothing to do. A key you paste, even in a Slack thread, goes straight into the vault and is never shown again.
+
+**Why it matters.** Workers read messages from people outside your agency. A worker that held a key could be talked into repeating it; a worker that never has one cannot.
+
+Read more: [Credential safety](/work/connections/credential-safety)
+
+## Getting work done {#work}
+
+### Task {#task}
+
+**What it is.** A piece of work with a **requester** (who asked), a **holder** (who is doing it) and a **log** of every handoff and result. Workers and people can be either.
+
+**Use it for.** Handing work to a worker or a person and saying where the result should go. A worker opens one itself when a job cannot be finished in one go or belongs to someone else.
+
+**Why it matters.** Work does not fall through the cracks, and every handoff and result is on record.
+
+Read more: [Tasks](/work/tasks)
+
+### Routine {#routine}
+
+*Also called scheduled task.*
+
+**What it is.** A task that repeats on a schedule: every weekday at 9, the first of the month, every hour.
+
+**Use it for.** Ask in plain words, saying when and where the results go: *every weekday at 9 Pacific, post Acme's status note here*. One routine can run for several clients, each on that client's copy and posting to that client's channel. Pause or cancel it by asking.
+
+**Why it matters.** Recurring work happens on time without anyone having to remember it.
+
+Read more: [Routines](/work/routines)
+
+### Artifact {#artifact}
+
+**What it is.** A web page a worker publishes with its own link: a report, a dashboard, a one-pager.
+
+**Use it for.** Asking for anything you would rather pass around as a link. Ask for changes and the new version appears at the same link. New artifacts are **private** to people in your company; make one **public** to share it with a client.
+
+**Why it matters.** Clients get polished work they can open, print and forward, not a long message in Slack.
+
+Read more: [Artifacts](/work/artifacts)
+
+### Email {#email}
+
+**What it is.** Every worker has its own email address, such as `nora@youragency.ergoly-mail.com`, and can send from it. A client's copy has its own address.
+
+**Use it for.** Asking a worker to email someone, with attachments, or to reply in an existing thread. Receiving email is coming soon.
+
+**Why it matters.** Work reaches the clients who live in their inbox, sent under the worker's name.
+
+Read more: [Email](/workers/channels/email)
+
+### Activity {#activity}
+
+**What it is.** The record of everything that happens across your company: what was done, by whom, and when. Entries can never be edited or deleted.
+
+**Use it for.** Checking what happened. Filter by area or by who acted; *system* means your workers and your API keys.
+
+**Why it matters.** Nothing a worker does happens out of sight.
+
+Read more: [Approvals](/work/approvals)
+
+## For technical teams {#technical}
+
+### API key {#api-key}
+
+**What it is.** A key that reaches everything your company owns, read and write, through Ergoly's API. Admins create keys in control, under **Settings**, and each key is shown only once.
+
+**Use it for.** Connecting Ergoly to the systems you already run, or letting a coding agent such as Claude Code create workers, add clients and schedule routines for you.
+
+**Why it matters.** Anything you can do in control, a key can do from code. Everything a key changes is recorded under the key's name, and revoking it takes effect from the next request.
+
+Read more: [The API](/technical/api)
+
+### Hook {#hook}
+
+**What it is.** A web address that belongs to one worker. When another system posts to it, the worker works on what arrived and posts the answer in a channel or DM you chose.
+
+**Use it for.** Starting a worker from a form submission, a new support ticket or a finished deploy. Hooks are created through the API today.
+
+**Why it matters.** Any system that can send a web request can hand work to a worker.
+
+Read more: [Web](/workers/channels/web)
+
+## The same words in the API {#names}
+
+The docs use the words control shows you. The API uses the names its records carry, and engineers at Ergoly use a few more. Side by side, for anyone at your agency who works with the [API](/technical/api).
+
+| Docs | API | Internal | Meaning |
+| --- | --- | --- | --- |
+| Company | organization | org | Your agency on Ergoly. Owns everything. |
+| Worker | Worker | Worker | One Slack app, one name, one job. |
+| A worker's copy | ework | posting, ework | One running copy of a worker: for one client, or for your team. |
+| Your team's copy | core ework | core | The copy that serves your internal channels and holds every client's memory. |
+| A client's copy | client ework | client-bound ework | The copy for one client, holding only that client's memory. |
+| Client | Client | Client | A customer of yours. |
+| Channel | channel | channel mapping, room | A Slack channel, mapped to a client or marked internal; also email and the web. |
+| Event | — | turn trigger, dispatch | Something that happens in a channel and starts work. |
+| — | — | turn | One message handled by one copy, with one reply. |
+| — | — | front desk, routing | The fixed rule that sends a message to one copy. |
+| Knowledge | memory | tiers | Memory and skills, as files in five tiers. |
+| Company, worker, client knowledge | org, worker, client | tenant tiers | The tiers your company owns. |
+| Platform knowledge | — | system tier | Ergoly's own tier, read-only, lowest precedence. |
+| Skill | skill | skill | A directory with a SKILL.md, in a tier. |
+| Task | task | task | Work with a requester, a holder, and a log. |
+| Routine | scheduled job | scheduled task, cron | A task whose start repeats. |
+| Connection | connection | vault connection | A credential or connected app, and its placement. |
+| Placement | placement | placement, scope | Who may use a connection: company, worker, client, or worker for one client. |
+| — | — | egress gateway | The proxy that puts a secret into an outbound request by hostname. |
+| AI Admin | — | AI Admin | Your internal-only worker that sets the company up from Slack. |
+| Behaviors | behaviors | behaviors | The Avoid, Don't, Prefer, and Use lines a worker follows. |
+| Responsibilities | responsibilities | responsibilities | What a worker is trained for and accountable for. |
+| Activity | activity | activity log | The append-only record of every write. |
+| Artifact | — | artifact | A web page a worker publishes. |

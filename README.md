@@ -1,55 +1,25 @@
-# Mintlify Starter Kit
+# Ergoly docs
 
-Use the starter kit to get your docs deployed and ready to customize.
+The public documentation and changelog for Ergoly, at https://docs.ergoly.ai. Built with [Mintlify](https://mintlify.com).
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+- Pages are MDX files; the file path is the URL (`workers/identity.mdx` → `/workers/identity`).
+- `docs.json` holds the site name, colours, fonts, navigation and redirects.
+- `snippets/` holds the `SlackScene` component and the changelog entry bodies. Files there never render as pages.
+- `images/` holds the diagrams and the portraits the Slack scenes use.
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+Writing and terminology rules are in [AGENTS.md](AGENTS.md).
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+## Working locally
 
-## AI-assisted writing
-
-Set up your AI coding tool to work with Mintlify:
+Needs Node 20.17 or newer (`.tool-versions` pins 22 for asdf) and the Mintlify CLI:
 
 ```bash
-npx skills add https://mintlify.com/docs
-```
-
-This command installs Mintlify's documentation skill for your configured AI tools like Claude Code, Cursor, Windsurf, and others. The skill includes component reference, writing standards, and workflow guidance.
-
-See the guides for [Claude Code](https://www.mintlify.com/docs/guides/claude-code), [Codex](https://www.mintlify.com/docs/guides/codex), [Cursor](https://www.mintlify.com/docs/guides/cursor), and [Devin Desktop](https://www.mintlify.com/docs/guides/devin-desktop) for tool-specific setup.
-
-## Development
-
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
-
-```
 npm i -g mint
+mint dev            # preview at http://localhost:3000
+mint validate       # schema and MDX errors
+mint broken-links --check-anchors --check-redirects
 ```
 
-Run the following command at the root of your documentation, where your `docs.json` is located:
+## Publishing
 
-```
-mint dev
-```
-
-View your local preview at `http://localhost:3000`.
-
-## Publishing changes
-
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
-
-## Need help?
-
-### Troubleshooting
-
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
-
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+A push to `main` deploys through the Mintlify GitHub app. The site is served at the Mintlify subdomain and at docs.ergoly.ai.

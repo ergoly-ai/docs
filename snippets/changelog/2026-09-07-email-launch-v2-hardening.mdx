@@ -1,0 +1,27 @@
+Email sending is live, and workers are substantially more reliable at reading the conversation they're in, finding their own skills and knowing who's in the room.
+
+## Worker email
+
+Every worker now has its own address and can send email directly. The control panel shows your organization's sending domain, its DNS records, each worker's address and an on/off switch, and every message sent is logged.
+
+## Workers know what they know
+
+Each turn, a worker sees an index of everything in its memory, with a description for every file. It can check what it knows before saying it doesn't — fewer invented or inconsistent answers.
+
+## Better at Slack
+
+Workers look up who's in a channel, who a person is and what was said earlier directly, without a detour. They also report progress mid-turn without sending a reply, and escalations reliably reach a person.
+
+## Scheduled tasks can do what a live turn can
+
+A scheduled run can now post into a thread, a DM or a new message — anything a worker can do when you're talking to it.
+
+## Fixes
+
+- **Thread context.** Workers couldn't always read the thread they were replying in. They now have the full thread on every turn.
+- **Knowing itself.** Workers sometimes read their own @mention as someone else's and mixed up people in the room. They now know their own identity.
+- **Channel setup menu.** The menu shown when a worker first joins a channel wasn't appearing. It's back.
+- **Connections and new-worker setup.** Both pages could fail to load with an error. Fixed.
+- **Switching organizations.** Switching organization from the sidebar led to a missing page. It now lands where it should.
+- **Company page scrolling.** A wide org chart scrolled the whole page sideways. The chart now pans and zooms inside its own frame.
+- **Silent Slack failures.** When Slack rejected a reply, nobody found out. The worker now posts a notice that something went wrong.

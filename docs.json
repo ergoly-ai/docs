@@ -1,53 +1,232 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "name": "Ergoly",
+  "description": "How to run an agency on Ergoly: workers you own, one per client, inside the Slack you already use.",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
-  },
-  "favicon": "/favicon.svg",
-  "navigation": {
-    "pages": [
-      {
-        "group": "Getting Started",
-        "pages": [
-          "index",
-          "quickstart"
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    "primary": "#079b9b",
+    "light": "#3cd3cf",
+    "dark": "#0f7170"
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/light.png",
+    "dark": "/logo/dark.png",
+    "href": "https://www.ergoly.ai"
+  },
+  "favicon": "/favicon.png",
+  "fonts": {
+    "family": "Satoshi",
+    "source": "/fonts/Satoshi-Variable.woff2",
+    "format": "woff2"
+  },
+  "background": {
+    "color": {
+      "light": "#f2f3f3",
+      "dark": "#282828"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "icon": "book-open",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "index",
+              "a-day-with-a-worker"
+            ]
+          },
+          {
+            "group": "Getting started",
+            "root": "getting-started",
+            "pages": [
+              "getting-started/access",
+              "getting-started/ai-admin",
+              "getting-started/first-client",
+              "getting-started/first-correction"
+            ]
+          },
+          {
+            "group": "Company",
+            "root": "company",
+            "pages": [
+              "company/chart",
+              "company/members",
+              "company/teams",
+              "company/settings",
+              "company/access"
+            ]
+          },
+          {
+            "group": "Workers",
+            "root": "workers",
+            "pages": [
+              "workers/identity",
+              "workers/role",
+              "workers/responsibilities",
+              "workers/behaviors",
+              "workers/response-policy",
+              "workers/reporting",
+              "workers/access",
+              "workers/triaging",
+              {
+                "group": "Channels",
+                "root": "workers/channels",
+                "expanded": false,
+                "pages": [
+                  {
+                    "group": "Slack",
+                    "root": "workers/channels/slack",
+                    "expanded": false,
+                    "pages": [
+                      "workers/channels/slack/internal-channels",
+                      "workers/channels/slack/client-channels",
+                      "workers/channels/slack/dms",
+                      "workers/channels/slack/group-dms"
+                    ]
+                  },
+                  {
+                    "group": "Email",
+                    "root": "workers/channels/email",
+                    "expanded": false,
+                    "pages": [
+                      "workers/channels/email/receiving"
+                    ]
+                  },
+                  {
+                    "group": "Web",
+                    "root": "workers/channels/web",
+                    "expanded": false,
+                    "pages": [
+                      "workers/channels/web/triggers"
+                    ]
+                  },
+                  "workers/channels/events"
+                ]
+              },
+              {
+                "group": "Knowledge",
+                "root": "workers/knowledge",
+                "expanded": false,
+                "pages": [
+                  "workers/knowledge/memory",
+                  "workers/knowledge/skills"
+                ]
+              },
+              "workers/connections"
+            ]
+          },
+          {
+            "group": "Clients",
+            "root": "clients",
+            "pages": [
+              "clients/adding",
+              "clients/assigning-a-worker",
+              "clients/separation",
+              "clients/internal-channels"
+            ]
+          },
+          {
+            "group": "Work",
+            "root": "work",
+            "pages": [
+              "work/tasks",
+              "work/routines",
+              {
+                "group": "Connections",
+                "root": "work/connections",
+                "expanded": false,
+                "pages": [
+                  "work/connections/connecting-a-tool",
+                  "work/connections/placement",
+                  "work/connections/keys-and-tools",
+                  "work/connections/custom-tools",
+                  "work/connections/credential-safety"
+                ]
+              },
+              "work/approvals",
+              {
+                "group": "Artifacts",
+                "root": "work/artifacts",
+                "expanded": false,
+                "pages": [
+                  "work/artifacts/collaboration"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Technical details",
+            "root": "technical",
+            "pages": [
+              "technical/how-a-worker-runs",
+              "technical/where-knowledge-lives",
+              "technical/how-a-channel-reaches-a-worker",
+              "technical/how-credentials-are-held",
+              "technical/api"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "glossary"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Changelog",
+        "icon": "sparkles",
+        "groups": [
+          {
+            "group": "Changelog",
+            "pages": [
+              "changelog",
+              "changelog/2026-11-02-scheduled-task-cost-and-reliability",
+              "changelog/2026-10-26-tasks-launch-and-webhooks",
+              "changelog/2026-10-19-tasks-and-key-connections",
+              "changelog/2026-10-12-smarter-workers-whole-messages",
+              "changelog/2026-10-05-vendors-on-org-chart",
+              "changelog/2026-09-28-approval-flows-self-managed-connections",
+              "changelog/2026-09-21-connections-fixes-image-read",
+              "changelog/2026-09-14-composio-connections-launch",
+              "changelog/2026-09-07-email-launch-v2-hardening",
+              "changelog/2026-08-31-agent-surface-platform-api",
+              "changelog/2026-08-24-streamed-turns-and-reliability"
+            ]
+          }
+        ]
+      }
+    ]
   },
   "navbar": {
     "links": [
       {
+        "label": "ergoly.ai",
+        "href": "https://www.ergoly.ai"
+      },
+      {
         "label": "Support",
-        "href": "mailto:support@mintlify.com"
+        "href": "https://www.ergoly.ai/support"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.mintlify.com"
+      "label": "Sign in",
+      "href": "https://control.ergoly.ai/sign-in"
+    }
+  },
+  "footer": {
+    "socials": {
+      "website": "https://www.ergoly.ai",
+      "linkedin": "https://www.linkedin.com/company/ergoly"
+    }
+  },
+  "seo": {
+    "metatags": {
+      "canonical": "https://docs.ergoly.ai"
     }
   },
   "contextual": {
@@ -62,11 +241,22 @@
       "vscode"
     ]
   },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+  "redirects": [
+    {
+      "source": "/docs",
+      "destination": "/"
+    },
+    {
+      "source": "/docs/technical/glossary",
+      "destination": "/glossary"
+    },
+    {
+      "source": "/docs/:slug*",
+      "destination": "/:slug*"
+    },
+    {
+      "source": "/technical/glossary",
+      "destination": "/glossary"
     }
-  }
+  ]
 }

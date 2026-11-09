@@ -1,0 +1,29 @@
+---
+title: "Responsibilities"
+description: "The list of what a worker is trained for and accountable for. Requests outside the list are outside its job."
+---
+
+import { SlackScene } from "/snippets/SlackScene.jsx"
+
+A worker's **responsibilities** are an enumerated list: the high-order things it is trained and proven capable of, and responsible for in its role. Once the list is saved, the worker treats a request that is not on it as outside its job, and says so.
+
+## The cards {#cards}
+
+On the worker's **Overview** tab, the first two cards are **Responsibilities** and **Out of scope**. Both come from one file in the worker's memory. A pencil icon opens an editor with **Write** and **Preview**; press **Save** and it reaches the worker on its next turn. If the worker edited the file while you had it open, control says so and offers **Reload**.
+
+## Drafted for you {#drafted}
+
+When you create a worker, the wizard drafts a responsibilities list from the job title and your company chart. Edit it before you continue. If a worker's list is still empty, control can show a **Proposed responsibilities** card built from what the worker does today, with **Save as the list** and **Reject**.
+
+## How the list changes {#changes}
+
+You can edit it any time. The worker can also propose a change, in Slack, when it learns something about its job. It makes the change only after your explicit yes, and records a dated line under *Changes* in the file saying what changed and who agreed.
+
+<SlackScene
+  scene={{"channel":"acme-internal","kind":"channel","lines":[{"from":"you","name":"Sam","text":"@Nora from now on you also own the monthly client health report."},{"from":"worker","name":"Nora","text":"I can add that. Proposed line for my responsibilities: Prepare the monthly client health report for each retainer client. Shall I add it?"},{"from":"you","name":"Sam","text":"Yes."},{"from":"worker","name":"Nora","text":"Added, with a note that Sam agreed on the 22nd."}]}}
+  channels={["acme-internal"]}
+/>
+
+<Note>
+  **Worth knowing.** The AI Admin's responsibilities are kept by Ergoly and are not edited here.
+</Note>

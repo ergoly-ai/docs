@@ -1,0 +1,44 @@
+---
+title: "Client separation"
+description: "What a client's copy of a worker can see, what it cannot, and what a client's contact can do."
+---
+
+The copy of a worker that serves Acme has Acme's folder, the worker's own knowledge, and the company's. It does not have Globex's folder, Globex's connections, or Globex's people. There is no setting that changes this, and nothing a person types in Acme's channel can change it either, because which copy answers is decided from the channel before the worker reads a word.
+
+|  | Nora for Acme | Your team's Nora |
+| --- | --- | --- |
+| Acme's notes and preferences | Yes | Yes |
+| Globex's notes and preferences | No | Yes |
+| Connections placed with Acme | Yes | No, unless also placed wider |
+| Connections placed with the whole company | Yes | Yes |
+| People on the Company chart | Acme's own contacts and the workers serving Acme | Everyone |
+| Globex's channel | Never | Never; that is Globex's copy's |
+
+## What a client's contact can do {#contacts}
+
+- Talk to the worker in their channel, and DM it once they are linked to the client.
+- Stop the worker's reply to their own message with `stop`.
+- Press buttons the worker posts for them, and ask it to be quieter.
+
+## What a client's contact cannot do {#cannot}
+
+- Add the worker to a channel, or set a channel up. Only your workspace's admins can.
+- Stop a scheduled run. Only your own people can.
+- Reach your team's copy of the worker, or anything about another client.
+
+## What travels up {#lessons}
+
+A fact about Acme stays with Acme. A lesson about the job, filed in the worker's folder by your team's copy, reaches every client. That is the point: the worker gets better at the work for everyone, and no client ever sees another's. See [Memory](/workers/knowledge/memory).
+
+<Note>
+  **Worth knowing.** A client channel is never answered by your team's copy, even if the client's copy is down. Silence is the safe failure.
+</Note>
+
+<Columns cols={2}>
+  <Card title={"How a worker runs"} href={"/technical/how-a-worker-runs"}>
+    The copies, underneath.
+  </Card>
+  <Card title={"How credentials are held"} href={"/technical/how-credentials-are-held"}>
+    Why a client's keys never reach another client's copy.
+  </Card>
+</Columns>

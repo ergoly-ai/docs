@@ -1,0 +1,27 @@
+The biggest change yet to how your worker speaks in Slack, plus a round of fixes aimed at the failures we heard about most.
+
+## Live streamed replies
+
+Instead of sending several messages while it works, your worker now posts one message that updates in place. Named progress steps appear as they happen, then the answer streams in underneath. The channel stays readable and you always know where things stand.
+
+## Tables and files
+
+Workers can send properly formatted tables and upload files directly into Slack. A comparison, a list of records or a report arrives as a real table instead of a wall of text.
+
+## One place for memory
+
+The Knowledge tab in the control panel now shows a worker's memory as a single file tree with named folders, instead of four separate views.
+
+## Improvements
+
+- **Faster long tasks.** Workers run longer scripts more efficiently, so big tasks finish sooner.
+
+## Fixes
+
+- **No more phantom deliveries.** After a failed turn, a worker could claim work was waiting in a thread where nothing had been posted. It now knows whether its last reply landed.
+- **Quotes no longer cut replies short.** A reply containing a quotation mark was being truncated at the quote.
+- **Scheduled tasks get the full time.** Task runs were stopped after a minute. They now get the same 30 minutes as a live turn.
+- **Listen-only means listen-only.** Workers set to listen without speaking could still post in some cases. No longer.
+- **Accurate explanations.** Workers sometimes told people a message had been suppressed when it had been delivered. They now describe their own behavior correctly.
+- **Recovering from stuck states.** Many stuck-worker reports traced to one family of bugs, now reworked. Workers recover from these on their own instead of waiting for a reset.
+- **Messages during start-up.** Two messages arriving while a worker was waking could cause the second to fail. Both are now answered.

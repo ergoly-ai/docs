@@ -1,0 +1,34 @@
+---
+title: "Add a client and a channel"
+description: "Tell the AI Admin who the client is, and which Slack channel is theirs. From then on, the worker answers there as your agency."
+---
+
+import { SlackScene } from "/snippets/SlackScene.jsx"
+
+A worker on its own works for your team. To put it in front of a client, you need a **client** in Ergoly and a Slack channel that belongs to that client. The AI Admin does both from a message.
+
+<SlackScene
+  scene={{"channel":"Ada","kind":"dm","lines":[{"from":"you","name":"Sam","text":"Add Acme as a client and put Nora in #acme. Daniel Reyes is their contact."},{"from":"worker","name":"Ada","text":"I'll create the client Acme, assign Nora to it, set #acme as Acme's channel, and bind Daniel Reyes to Acme so his DMs with Nora go to Acme. Nora will join #acme itself. OK?"},{"from":"you","name":"Sam","text":"OK."},{"from":"worker","name":"Ada","text":"Done. Acme is live in #acme. Nora is there now, and only sees Acme's world when it is working for Acme."}]}}
+  channels={[]}
+/>
+
+## What just happened {#what-happened}
+
+Three things. A client called Acme now exists. Nora has a separate copy for Acme, with Acme's memory and nothing else. And #acme is mapped to Acme, so a message there always reaches that copy.
+
+## Or invite the worker yourself {#invite}
+
+You can also invite a worker to a channel in Slack, the way you would invite a person. It asks you, and only you, what the channel is for. See [When a worker joins a channel](/workers/channels/slack).
+
+<Note>
+  **Worth knowing.** Start with an internal channel for the client, where your team reviews the worker's drafts, before inviting it into the channel the client is in. See [Internal client channels](/clients/internal-channels).
+</Note>
+
+<Columns cols={2}>
+  <Card title={"Clients"} href={"/clients"}>
+    Adding, assigning, and what stays separate.
+  </Card>
+  <Card title={"Client channels"} href={"/workers/channels/slack/client-channels"}>
+    How a channel is mapped, and how to change it.
+  </Card>
+</Columns>

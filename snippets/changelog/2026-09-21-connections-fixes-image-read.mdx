@@ -1,0 +1,21 @@
+Workers can look at what you send them for the first time, and third-party connections are both faster to set up and much harder to knock over.
+
+## Workers can see images
+
+A photo, screenshot or diagram attached to a Slack message — or stored in a worker's memory — now reaches the worker as an image it can actually look at, rather than unreadable data. Ask about a chart, a mockup or a whiteboard photo and get a real answer.
+
+## A faster Connect sheet
+
+The app catalog on the Connections page now opens instantly and caches what it loads, removing the four-to-six-second wait every time you opened it.
+
+## Improvements
+
+- **Clearer direct API connections.** For services connected by base URL rather than from the catalog, workers now see the full registered address and know it's a direct API, so they build correct requests without guessing.
+
+## Fixes
+
+- **Permission errors no longer disconnect.** When a service refused one specific call, the whole connection was being marked expired. Now only a genuinely invalid or revoked credential disconnects; a missing permission shows up as a clear “not permitted for this call” and the connection stays live.
+- **Reconnect links complete.** Reconnecting a key-based app through its link no longer lands on a mismatch error when the reconnect actually worked.
+- **Real @mentions.** Workers occasionally posted mention markup as plain text, so the person was never notified. Mentions now render as real Slack @mentions.
+- **Moving older API keys across.** Keys for services outside the app catalog now carry over correctly when an organization moves to the new connection system.
+- **Credentials kept out of logs.** A failed command in a worker's sandbox could write an internal access token into the sandbox log. It no longer can.

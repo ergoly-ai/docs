@@ -1,0 +1,24 @@
+---
+title: "Events"
+description: "Everything that makes a worker act. Each one ends with an answer back where it came from."
+---
+
+An **event** is something that happens in a channel. Every event starts the worker working on one thing, and when it is done, the answer goes back to where the event came from. These are all of them.
+
+| Event | What starts | Where the answer goes |
+| --- | --- | --- |
+| A mention | An @-mention in a channel the worker is set up in. | A thread under the message. |
+| A message | A message with no mention, in a channel where the worker is set to answer everything. With listening on, it reads but does not reply. | A thread, or nowhere. |
+| A DM or group DM | Any message, from someone it may talk to. | The same DM. |
+| A queued message | A message sent while it was busy, handled once it is free. | A thread under that message. |
+| A button press | Someone presses Approve, Reject, or another button the worker posted. | The same thread, with the decision recorded. |
+| A scheduled task | A task fires on its schedule. | The channel or person the task names; otherwise only the task's log. |
+| A task change | A task is handed to the worker, commented on by a person, or changes state. | The task's log, and Slack if the task says so. |
+| A hook delivery | Another system posts to the worker's hook. | The channel or DM the hook names. |
+| Its first day | A newly built worker sends its first DM to the person who created it. | That DM. |
+
+Not events: an email arriving (receiving is not live), a trigger from a connected tool (not available yet), or someone opening control.
+
+<Note>
+  **Worth knowing.** A worker works on one event at a time. A second event in the same place waits; events in different places, for different clients, run on different copies and do not wait for each other.
+</Note>

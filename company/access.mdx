@@ -1,0 +1,32 @@
+---
+title: "Access"
+description: "Three ways into your company: a person in control, the AI Admin in Slack, and an API key."
+---
+
+## People in control {#people}
+
+Everyone you invite under **Settings → Members** can use control. Two things are reserved for **admins**: creating and revoking API keys, and setting up the AI Admin. Both exist because each hands out a key to the whole company.
+
+## The AI Admin in Slack {#admin}
+
+Your AI Admin is a worker that works only for your team and holds its own API key. That is what lets it create workers, map channels, add clients and connect tools from a conversation. It can never be put in front of a client, and it asks before every change. See [Meet your AI Admin](/getting-started/ai-admin).
+
+## API keys {#keys}
+
+A key reaches everything your company owns, read and write. There is no narrower key. To create one:
+
+1. Open **Settings**, then the **API keys** tab, and press **Create key**.
+2. Give it a **Name** (the placeholder suggests *deploy-pipeline*) and an **Expiry**: never, 30 days, 90 days, or a year.
+3. Copy it. Control says *This is the only time it is shown*, and means it.
+
+The list shows each key as **Yours**, **A worker's**, or **System-managed**, and any of them can be revoked. Revoking takes effect from the next request. What a key did before that is in the [activity feed](/work/approvals).
+
+<Note>
+  **Worth knowing.** A key is not a person. Everything it writes is recorded under the key's own name, so give each job its own key and an expiry if the job has an end.
+</Note>
+
+<Columns cols={2}>
+  <Card title={"The API"} href={"/technical/api"}>
+    The reference, the first call, and the shape of every answer.
+  </Card>
+</Columns>

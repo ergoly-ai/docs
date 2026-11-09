@@ -1,0 +1,24 @@
+---
+title: "Web"
+description: "Ways for other systems to reach a worker: a hook it listens on, triggers from connected tools, and the API."
+---
+
+## Hooks {#hooks}
+
+A **hook** is a URL that belongs to one worker. When another system posts to it, the worker takes what arrived and works on it, and the answer lands in a Slack channel or a person's DM that you named when you created the hook. A form submission, a new ticket, a deploy finishing: anything that can send a web request can start a worker.
+
+Each hook has a name, a destination (a channel the worker is in, or a person linked to it), and a threading choice: every delivery as a new message, each delivery in its own thread, or all deliveries in one thread. You can add an opening line and a template for how the payload is shown.
+
+Hooks are created through the API today; there is no screen for them in control yet. Creating one returns the URL and a secret that starts with `whsec_`, shown once. The caller sends the secret with every delivery. See [The API](/technical/api).
+
+## Triggers {#triggers}
+
+A **trigger** is an event inside a connected tool, such as a new deal in your CRM, that starts a worker without a web request. See [Triggers](/workers/channels/web/triggers), coming soon.
+
+## The API {#api}
+
+Everything you can do in control, a key can do from a terminal or a coding agent: create workers, add clients, map channels, schedule tasks, connect tools, read the activity feed. There is no API call that sends a worker a message directly; to start it from code, use a hook or a task. See [The API](/technical/api).
+
+<Note>
+  **Worth knowing.** A hook on a client's copy of a worker can only post into that client's channels or DM that client's people. If the channel is later moved to another client, deliveries stop until the hook is re-pointed.
+</Note>

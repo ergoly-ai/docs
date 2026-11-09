@@ -1,0 +1,74 @@
+---
+title: "A day with a worker"
+description: "One worker, two clients, one morning. What it looks like from inside Slack."
+---
+
+import { SlackScene } from "/snippets/SlackScene.jsx"
+
+Your agency is on Ergoly with one worker, Nora, who handles account management for two clients, Acme and Globex. Here is a Tuesday.
+
+## 9:00 — a routine runs {#routine}
+
+Nora has a routine that runs every weekday morning for each client: pull what moved in the project tracker and post a status note. Nobody asked for it today. It runs because it was scheduled once.
+
+<SlackScene
+  scene={{"channel":"acme","kind":"channel","lines":[{"from":"worker","name":"Nora","text":"Morning. Status as of 9:00: identity approved, website build past halfway, launch copy with your legal team. A board-ready one-pager is in this thread.","badge":"Every weekday 9:00","card":{"title":"Acme rebrand · status","lines":["Identity: approved Sep 12","Website: 14 of 22 pages built","Launch copy: with Acme legal"]}}]}}
+  channels={["acme"]}
+  caption={"A routine posts where it was told to. Globex gets its own note, from its own copy of Nora."}
+/>
+
+## 10:40 — a client asks {#client}
+
+Daniel at Acme asks for something in the shared channel. Nora answers in a thread, as your agency, from everything it knows about Acme and nothing else.
+
+<SlackScene
+  scene={{"channel":"acme","kind":"channel","lines":[{"from":"client","name":"Daniel · Acme","text":"@Nora can you send over where the rebrand stands before our board meeting Thursday?"},{"from":"worker","name":"Nora","text":"Yes. Everything from this morning still holds, and legal came back an hour ago with two small edits. I've folded them in; the updated one-pager is attached."}]}}
+  channels={["acme"]}
+/>
+
+## 11:15 — you correct it {#correction}
+
+You read the thread and want the one-pager shorter. You say so, once. Nora fixes it and keeps the rule.
+
+<SlackScene
+  scene={{"channel":"acme-internal","kind":"channel","lines":[{"from":"you","name":"Sam","text":"@Nora board one-pagers for Acme should fit on one screen. No appendix."},{"from":"worker","name":"Nora","text":"Done. I've cut the appendix and I'll keep Acme's board one-pagers to one screen from now on."}]}}
+  channels={["acme-internal"]}
+  caption={"The rule is filed with Acme. Globex's one-pagers are unchanged."}
+/>
+
+## 14:00 — it asks before acting {#approval}
+
+Nora is set to get approval before anything goes to a client's mailing list. It drafts, then asks.
+
+<SlackScene
+  scene={{"channel":"globex-internal","kind":"channel","lines":[{"from":"worker","name":"Nora","text":"Globex's launch email is drafted for Thursday 8:00. It goes to 1,240 subscribers. Approve to schedule it, or tell me what to change.","card":{"title":"Approve · Reject","lines":["Launch email · Globex","Thursday 8:00 · 1,240 recipients"]}},{"from":"team","name":"Priya","text":"Approved."},{"from":"worker","name":"Nora","text":"Scheduled. Priya approved at 14:02."}]}}
+  channels={["globex-internal"]}
+  caption={"Whoever presses the button is recorded with the decision."}
+/>
+
+## 16:30 — it hands something off {#handoff}
+
+A question comes up that needs a person. Nora opens a task, hands it to the account lead, and waits.
+
+<SlackScene
+  scene={{"channel":"acme-internal","kind":"channel","lines":[{"from":"worker","name":"Nora","text":"Acme asked whether the launch can move a week. That's a scope and budget call, so I've handed it to @Sam. I'll reply to Acme once you decide."}]}}
+  channels={["acme-internal"]}
+  caption={"A task waits for its holder. Nothing goes to the client until you answer."}
+/>
+
+That is the whole loop: routines run, clients ask, you correct, it asks when it should, and it hands off what is not its call. Each of those has a page of its own.
+
+<Columns cols={2}>
+  <Card title={"Routines"} href={"/work/routines"}>
+    Tasks that repeat, across clients.
+  </Card>
+  <Card title={"Memory"} href={"/workers/knowledge/memory"}>
+    How a correction becomes a rule, and where it is kept.
+  </Card>
+  <Card title={"Approvals"} href={"/work/approvals"}>
+    Asking first, and the record of who decided.
+  </Card>
+  <Card title={"Tasks"} href={"/work/tasks"}>
+    Handing work to a worker, or to a person.
+  </Card>
+</Columns>
