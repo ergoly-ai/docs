@@ -61,7 +61,7 @@ The spec is not hand-kept either. control builds it from its operation list (`pr
 bun -e 'import { buildOpenApiDocument } from "@/lib/platform-api/docs/document"; await Bun.write("../../docs/openapi.json", JSON.stringify(buildOpenApiDocument("https://control.ergoly.ai"), null, 2) + "\n")'
 ```
 
-Then, if an operation was added or removed, update the matching group in `docs.json` (a listed endpoint that is gone fails `mint validate`; a new one is invisible until listed), run `mint validate`, and commit. Refresh it whenever a control release changes the API; the changelog entry for that release is the cue. The `auth` and `errors` tags have no operations; their prose lives on the introduction page.
+Then run `bun scripts/apply-titles.ts` from this repo: it replaces each operation's summary with the short page title in `scripts/titles.json` (a verb and a noun, "Create a worker", never a sentence that lists what else the call does) and fails if an operation has no title or a title has no operation. Then, if an operation was added or removed, update the matching group in `docs.json` (a listed endpoint that is gone fails `mint validate`; a new one is invisible until listed), run `mint validate`, and commit. Refresh it whenever a control release changes the API; the changelog entry for that release is the cue. The `auth` and `errors` tags have no operations; their prose lives on the introduction page.
 
 ## Content boundaries
 

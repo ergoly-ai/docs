@@ -77,7 +77,7 @@
     "/api/v1/organization": {
       "get": {
         "operationId": "getOrganization",
-        "summary": "Which organization this credential resolves to",
+        "summary": "Get your company",
         "description": "Needs no query of its own — authenticating the request already resolved the organization, so this hands back what the gate found. It is the cheapest way to confirm a key before doing anything with it.",
         "tags": [
           "organization"
@@ -162,7 +162,7 @@
     "/api/v1/workers": {
       "get": {
         "operationId": "listWorkers",
-        "summary": "List your Workers",
+        "summary": "List workers",
         "description": "Newest first. Deleted Workers are excluded; their eworks and scheduled jobs are excluded everywhere else for the same reason.",
         "tags": [
           "workers"
@@ -295,7 +295,7 @@
       },
       "post": {
         "operationId": "createWorker",
-        "summary": "Create a Worker and start provisioning it",
+        "summary": "Create a worker",
         "description": "The row exists when this returns and a provisioning run has started; poll `jobId` at `/api/v1/jobs/{id}`. When `currentStep` is `await_oauth_install`, open the job's `installUrl` in a browser as a Slack workspace admin — nothing here can finish that step for you. Approving it starts a second run, so follow the rest on `GET /api/v1/workers/{id}`, whose `latestProvisioningJob` is always the current one. `slug` must be unique in your organization, and a handful of words control uses in its own URLs are reserved.\n\n**Provisioning mints a Slack app, a sandbox and an agent. It costs money and spends one of your organization's daily provisioning slots.**",
         "tags": [
           "workers"
@@ -466,7 +466,7 @@
     "/api/v1/company/placements": {
       "get": {
         "operationId": "listCompanyPlacements",
-        "summary": "List where a Worker may sit on the Company chart",
+        "summary": "List chart placements",
         "description": "Every place on your Company chart a Worker may sit under — a person's seat, a Worker's, a team, an open role — in the order the chart draws them, each with its title and the place it sits under. Pass one's `id` as `reportsTo.placementId` when you create a Worker. Nothing inside a vendor or a client is listed, because a Worker may not sit there. The whole chart comes back at once; it is not paged.",
         "tags": [
           "workers"
@@ -550,7 +550,7 @@
     "/api/v1/workers/me": {
       "get": {
         "operationId": "getCurrentWorker",
-        "summary": "Read the Worker your credential belongs to",
+        "summary": "Get the current worker",
         "description": "For a key that was minted for a Worker, this is that Worker — the same record and the same fields as `/api/v1/workers/{id}`, without needing the id. It is the call to make first, because a Worker's own id is what almost every other call takes: its channels and its eworks. A key held by a person rather than by a Worker answers 404: there is no Worker for it to be, which is not a permission that could be granted. Address a Worker by its id instead.",
         "tags": [
           "workers"
@@ -661,7 +661,7 @@
     "/api/v1/workers/{id}": {
       "get": {
         "operationId": "getWorker",
-        "summary": "Read one Worker",
+        "summary": "Get a worker",
         "description": "Carries `latestProvisioningJob` — the current step, and the error text of a failure — so a stuck Worker can be diagnosed in one call. Null when the Worker has never been provisioned. It is always the CURRENT run, which is why this is the call to poll after a Slack install: that install starts a fresh run rather than resuming the one that was waiting. `installUrl` mirrors the run's, so one call answers whether an install is still owed as well. It also carries the worker's two role lists, `responsibilities` and `behaviors`, as Markdown — read from the worker's own memory, null until it has been provisioned, and not editable through this resource.",
         "tags": [
           "workers"
@@ -782,7 +782,7 @@
       },
       "patch": {
         "operationId": "updateWorker",
-        "summary": "Rename a Worker or change what it says it does",
+        "summary": "Update a worker",
         "description": "These columns are what the agent's identity file is composed from, so editing `displayName` changes who the agent says it is from its next turn. That is why editing the file by hand is refused and this is not. `roleTitle` and `description` take `null` to clear them. A change to any of the three is also pushed to the Worker's installed Slack app, with no re-install: Slack shows the new name within a couple of minutes, punctuation in it becomes spaces, and @mentions show the new name. `slackApp` says whether that push happened; the saved fields stand either way.",
         "tags": [
           "workers"
@@ -925,7 +925,7 @@
       },
       "delete": {
         "operationId": "deleteWorker",
-        "summary": "Delete a Worker",
+        "summary": "Delete a worker",
         "description": "The Worker stops serving immediately and drops out of every list here. Its Slack app configuration is left behind for an admin to remove by hand — the install is revoked, the app is not deleted.\n\n**This tears down real infrastructure and cannot be undone. Every ework under the Worker has its sandbox and its agent destroyed, the Slack install is revoked, and the Worker's scheduled jobs stop firing. Nothing here rebuilds it: a replacement is a new Worker, with a new agent that remembers none of this one's work.**",
         "tags": [
           "workers"
@@ -1011,7 +1011,7 @@
     "/api/v1/workers/{id}/retry": {
       "post": {
         "operationId": "retryWorkerProvisioning",
-        "summary": "Re-run provisioning for a Worker",
+        "summary": "Retry provisioning",
         "description": "The usual answer to a failed run, and the way back from a stop. It re-provisions in place: the previous sandbox keeps serving until the new one is up. Poll the `jobId` it returns. `phase` says which half of the pipeline ran — before the Slack install, or after it.\n\n**A re-provision mints a fresh sandbox and agent. It costs money and spends one of your organization's daily provisioning slots — which is what bounds an agent that reads “provisioning failed” and retries in a loop.**",
         "tags": [
           "workers"
@@ -1098,7 +1098,7 @@
     "/api/v1/workers/{id}/stop": {
       "post": {
         "operationId": "stopWorker",
-        "summary": "Stop a Worker",
+        "summary": "Stop a worker",
         "description": "Takes the Worker out of service without deleting it. Its eworks stop taking traffic; the row, its mappings and its history all stay. Stopping a stopped Worker is fine — it answers the same way. Bring it back with a re-provision, which is the call that costs a slot; stopping costs none, because it mints nothing.\n\n**The Worker stops answering in Slack straight away, in every room it serves.**",
         "tags": [
           "workers"
@@ -1184,7 +1184,7 @@
     "/api/v1/workers/{id}/eworks": {
       "get": {
         "operationId": "listWorkerEworks",
-        "summary": "List the runtimes under one Worker",
+        "summary": "List a worker's copies",
         "description": "One core ework plus one per bound Client. An empty list means this Worker has no eworks; a 404 means no such Worker for this credential. The two are kept apart deliberately — deriving the first from the second would report another tenant's Worker as one of yours that happens to be empty.",
         "tags": [
           "eworks"
@@ -1339,7 +1339,7 @@
     "/api/v1/eworks/{id}": {
       "get": {
         "operationId": "getEwork",
-        "summary": "Read one ework",
+        "summary": "Get a copy",
         "description": "Tier, status, sandbox class, sleep state and the snapshot it was provisioned from, plus the provider ids worth quoting in a support thread. `sleepingAt` set is normal and needs no action — the next turn wakes it.",
         "tags": [
           "eworks"
@@ -1439,7 +1439,7 @@
     "/api/v1/clients": {
       "get": {
         "operationId": "listClients",
-        "summary": "List your Clients",
+        "summary": "List clients",
         "description": "Newest first. Every Client of your organization, bound or not.",
         "tags": [
           "clients"
@@ -1557,7 +1557,7 @@
       },
       "post": {
         "operationId": "createClient",
-        "summary": "Create a Client",
+        "summary": "Create a client",
         "description": "Complete when it returns: the Client exists and its memory tier repository has been made, along with a private instance tier for each active Worker. No ework is created — that happens when you bind the Client to a Worker. A create that cannot make its repositories is rolled back rather than left half-made, and answers `upstream_error`; retry it unchanged.\n\n**Creating a Client makes repositories on a shared installation, so it spends one of your organization's daily provisioning slots even though no sandbox is involved.**",
         "tags": [
           "clients"
@@ -1701,7 +1701,7 @@
     "/api/v1/clients/{id}": {
       "get": {
         "operationId": "getClient",
-        "summary": "Read one Client",
+        "summary": "Get a client",
         "description": "Another organization's id answers 404, exactly as an unknown one does.",
         "tags": [
           "clients"
@@ -1794,7 +1794,7 @@
       },
       "patch": {
         "operationId": "updateClient",
-        "summary": "Edit a Client",
+        "summary": "Update a client",
         "description": "Send only what changes. `websiteUrl` and `shortDescription` take `null` to clear them. The slug is fixed once created.",
         "tags": [
           "clients"
@@ -1935,7 +1935,7 @@
     "/api/v1/workers/{id}/clients": {
       "post": {
         "operationId": "bindClientToWorker",
-        "summary": "Bind a Client to a Worker",
+        "summary": "Assign a client to a worker",
         "description": "Creates that pair's client-tier ework and, in the same call, optionally maps channels and binds people to it. The routing rows are durable when this returns; `activation` says whether the agent behind them came up. A channel or a person already bound to a different Client is refused rather than re-pointed. Channels the bot could not join are reported in `joinFailures` and do not fail the call.\n\n**Binding brings up a client-tier ework — a sandbox and an agent. It costs money and spends one of your organization's daily provisioning slots.**",
         "tags": [
           "clients"
@@ -2105,7 +2105,7 @@
     "/api/v1/channels": {
       "get": {
         "operationId": "listWorkspaceChannels",
-        "summary": "List the Slack workspace's channels",
+        "summary": "List Slack channels",
         "description": "Every public room in the workspace — including the ones none of your Workers is in, which is what makes it a directory rather than a roster — plus the private rooms a Worker has been invited into. `?query=` ranks by name with an exact match first, so \"#ops\" never resolves to \"#ops-archive\". `memberWorkerIds` is empty for a room no bot is in; that is the normal state of a public channel and the reason `inviteWorkerBot` exists. `seenAt` says when Slack last confirmed the room: the directory is re-read from Slack when it goes stale, so the answer is current rather than live. A workspace that has never been read and cannot be reached now is a 502, never an empty list — \"we could not find out\" and \"you have no channels\" are opposite answers.",
         "tags": [
           "channels"
@@ -2230,7 +2230,7 @@
       },
       "post": {
         "operationId": "createChannel",
-        "summary": "Create a channel",
+        "summary": "Create a Slack channel",
         "description": "Opens a Slack channel on the CALLING worker's own identity, so only a worker's key can call it. It creates the room, maps the caller, maps then invites each of `workers`, and invites the person who asked — the sender of the caller's running turn, never a body field — then `people`. With no person asking it is a 409 before any room exists. Each of `people` must be a person of the org's own Slack, else a 409 (`person_outside_org`, `person_not_a_person`, `person_lookup_failed`) before any room exists. Anyone who could not be brought in is reported, not failed.\n\n**A `client` mapping brings up that Client's ework for each Worker mapped to the room, and spends one of your organization's daily provisioning slots. An `internal` room mints nothing.**",
         "tags": [
           "channels"
@@ -2451,7 +2451,7 @@
     "/api/v1/workers/{id}/channels": {
       "get": {
         "operationId": "listWorkerChannels",
-        "summary": "List a Worker's channel mappings",
+        "summary": "List channel mappings",
         "description": "Each row names the Slack channel and the Client it routes to. A `client` of `null` is a room marked internal, which routes to the Worker's core ework — not a row with data missing.",
         "tags": [
           "channels"
@@ -2600,7 +2600,7 @@
       },
       "post": {
         "operationId": "mapChannel",
-        "summary": "Map a Slack channel to a Client",
+        "summary": "Map a channel",
         "description": "The bot joins the channel and its traffic routes to that Client's ework. Moving a channel already mapped to a different Client needs `confirm: true`, without which it is a `conflict`. A DM id (`D…`) is refused: a direct message routes by who is in it.\n\n**Mapping a channel brings up that Client's ework if it is not already running. It costs money and spends one of your organization's daily provisioning slots.**",
         "tags": [
           "channels"
@@ -2768,7 +2768,7 @@
     "/api/v1/workers/{id}/channels/{channel}": {
       "patch": {
         "operationId": "classifyChannel",
-        "summary": "Classify a channel as internal or a Client's",
+        "summary": "Classify a channel",
         "description": "`internal` writes a mapping row with a null client and routes the room to the Worker's existing core ework — nothing is minted, and it answers **200**, because the row is the whole of the change. `client` binds the room and brings up that pair's ework, so it answers **202** and the agent may still be coming up behind it. Use this rather than a delete to mark a room internal: an unmapped room routes nowhere, which is a different thing.\n\n**A `client` classification brings up that Client's ework and spends one of your organization's daily provisioning slots. An `internal` classification mints nothing and spends none.**",
         "tags": [
           "channels"
@@ -3088,7 +3088,7 @@
     "/api/v1/workers/{id}/channels/{channel}/invite": {
       "post": {
         "operationId": "inviteWorkerBot",
-        "summary": "Add a worker's bot to a channel",
+        "summary": "Invite a worker to a channel",
         "description": "Mapping a channel decides where its traffic routes; this puts the bot in the room, which is the other half and the one Slack will not do by itself. Only a worker's own key can call it, and the invite is made on that worker's own bot token and nothing else. The Worker being added must already be mapped to the room — map first, then invite; an unmapped room is a 409 `channel_not_mapped`. It acts only for a member: the room must already hold the calling worker's bot AND the person who asked — the sender of the calling worker's running turn, read on control, never named in the request. The calling worker never joins a room. Otherwise the call is a 409 whose `reason` says which: `inviter_not_in_channel`, `requester_not_in_channel`, `no_human_requester` (nobody's request is running — a scheduled run, a webhook) or `requester_unclear` (more than one is). A person in the room can then add the worker themselves: `/invite @worker` in the channel, or the channel's settings, then Integrations, then Add apps. A bot that is already there answers 200 with `invited: false`, so a retry is safe. The call takes no body; a body naming any field is a 400.",
         "tags": [
           "channels"
@@ -3230,7 +3230,7 @@
     "/api/v1/tasks": {
       "get": {
         "operationId": "listTasks",
-        "summary": "List tasks and scheduled jobs",
+        "summary": "List tasks",
         "description": "Cancelled jobs, and jobs under deleted Workers, are both excluded. `?workerId=` narrows to one Worker; a malformed id there is a 400, while a well-formed one naming another organization's Worker answers an empty list.",
         "tags": [
           "tasks"
@@ -3407,7 +3407,7 @@
       },
       "post": {
         "operationId": "createTask",
-        "summary": "Open a task, or schedule a job",
+        "summary": "Create a task",
         "description": "Without `scheduleKind`, opens a task held by the Worker in `workerId`, with an optional `description` and `dueAt`; the Worker is woken by it. With `scheduleKind`, schedules a job instead. `scheduleKind: \"once\"` takes an ISO `runAt`; `\"cron\"` takes a five-field `cronExpr` and a `timezone`. A `client`-tier job needs a `clientId`. An unrecognized zone is refused rather than replaced with a default — you meant a specific wall-clock time, and running a 09:00 job at 09:00 UTC instead is the kind of wrong nobody notices for a week.",
         "tags": [
           "tasks"
@@ -3595,7 +3595,7 @@
     "/api/v1/tasks/{id}": {
       "get": {
         "operationId": "getTask",
-        "summary": "Read a task, with its log",
+        "summary": "Get a task",
         "description": "The task as `listTasks` shows it, plus its log oldest first — the newest 200 entries, with `logOmitted` counting any older ones. An entry a key wrote shows the `platform` as its actor.",
         "tags": [
           "tasks"
@@ -3753,7 +3753,7 @@
       },
       "patch": {
         "operationId": "updateTask",
-        "summary": "Edit a scheduled job",
+        "summary": "Update a scheduled job",
         "description": "Every field is optional; send only what changes. `enabled: false` parks a job without cancelling it, and `true` starts it again. Changing the schedule re-arms every target.",
         "tags": [
           "tasks"
@@ -4007,7 +4007,7 @@
     "/api/v1/tasks/{id}/runs": {
       "get": {
         "operationId": "listTaskRuns",
-        "summary": "Read a job's run history",
+        "summary": "List a job's runs",
         "description": "Newest first, sorted and paged on the run's own start time. `success` is `null` while a run is still in flight — which is not the same as `false`.",
         "tags": [
           "tasks"
@@ -4147,7 +4147,7 @@
     "/api/v1/tasks/{id}/handoff": {
       "post": {
         "operationId": "handOffTask",
-        "summary": "Hand a task to a Worker or a person",
+        "summary": "Hand off a task",
         "description": "Name exactly one of `workerId` or `slackUserId`. Handing it to the holder it already has changes nothing and answers `changed: false`. A task that is one client's work can go only to a Worker serving that client, or to a person. A closed task cannot be handed on.",
         "tags": [
           "tasks"
@@ -4424,7 +4424,7 @@
     "/api/v1/tasks/{id}/state": {
       "post": {
         "operationId": "setTaskState",
-        "summary": "Start a task, or close it",
+        "summary": "Change a task's state",
         "description": "`in_progress` starts it; `resolved`, `declined` and `cancelled` close it with that outcome. Only the holder may decline, so a key never can. A task already in that state answers `changed: false`.",
         "tags": [
           "tasks"
@@ -4575,7 +4575,7 @@
     "/api/v1/tasks/{id}/targets": {
       "post": {
         "operationId": "addTaskTarget",
-        "summary": "Add a Client target to a job",
+        "summary": "Add a target",
         "description": "The job fires once per target. A target may override the expression, the instant, the zone and where it posts; anything it does not override folds against the job's own schedule. An override naming a field this job's schedule kind does not use is refused.",
         "tags": [
           "tasks"
@@ -4731,7 +4731,7 @@
     "/api/v1/tasks/{id}/targets/{targetId}": {
       "delete": {
         "operationId": "removeTaskTarget",
-        "summary": "Remove a target from a job",
+        "summary": "Remove a target",
         "description": "Removing the last target is refused with `conflict` — a job with no target fires nowhere, which is what cancelling the job is for.\n\n**That Client stops receiving this job. The others keep firing.**",
         "tags": [
           "tasks"
@@ -5304,7 +5304,7 @@
       },
       "patch": {
         "operationId": "updateWebhook",
-        "summary": "Edit a webhook",
+        "summary": "Update a webhook",
         "description": "Every field is optional; send only what changes. `enabled: false` makes every delivery answer 410 without retiring the endpoint, and `true` starts it again. A change takes effect on the next delivery.",
         "tags": [
           "webhooks"
@@ -5784,7 +5784,7 @@
     "/api/v1/webhooks/{id}/deliveries": {
       "get": {
         "operationId": "listWebhookDeliveries",
-        "summary": "List a webhook's deliveries",
+        "summary": "List deliveries",
         "description": "Every inbound POST leaves a row, whether it was accepted, refused or rate-limited, so \"it fired and nothing happened\" is answerable here. Bodies are not stored — the ledger records that a delivery arrived and how big it was, and the payload went to the agent.",
         "tags": [
           "webhooks"
@@ -5923,7 +5923,7 @@
     "/api/v1/connections": {
       "get": {
         "operationId": "listConnections",
-        "summary": "List your connections",
+        "summary": "List connections",
         "description": "Newest first, across all four types. `workerId` and `clientId` narrow to connections scoped to exactly that Worker or Client — they do not answer what that Worker can resolve, so org-wide connections it also reaches are not included. `?view=apps` lists the CONNECTED APPS instead: each is an app a person signed in to or pasted a key for, placed at one or more tiers, and its `placements` say where it may be used. That view takes no scope filter. No entry in either list carries a stored value.",
         "tags": [
           "connections"
@@ -6126,7 +6126,7 @@
       },
       "post": {
         "operationId": "createConnection",
-        "summary": "Store a secret, or connect an app",
+        "summary": "Create a connection",
         "description": "Two shapes, told apart by `app`. WITHOUT it, this stores a secret: `value` is write-only, it goes in here and no route gives it back; give at least one host unless the key already has some — a credential no host points at is never injected by the gateway, so it would sit there doing nothing; a key already taken at the same scope is a `conflict`, as is a host already mapped to another connection. WITH `app` — a catalog slug or a tool server's URL — this connects an app and places it: omit `auth` and the answer carries `connectUrl`, a hosted sign-in to open in a browser, with the connection `pending` until consent finishes and `active` after (poll `GET /api/v1/connections/{id}`); send `auth.mode: \"key\"` with the key in `value` and it is stored at Composio and checked with one real call, `verified` reporting the verdict; a tool server that takes a key names the header it goes in with `auth.header` (absent is `Authorization`, sent as `Bearer <key>`; any other header carries the key on its own); a tool server that takes no credential is `auth.mode: \"none\"`, and gets a row and a placement with nothing stored anywhere. A `placement` no ework could read — `instance` on a Worker with no active ework for that Client, `client` for a Client no Worker has one for — is a `conflict` naming the pair, refused before a key or a sign-in reaches Composio. The check is made once, up front: an ework removed while Composio is being called can still leave the placement in place, and adding or moving a placement later is checked again at the write. `connectUrl` is shown once — a replay under the same `Idempotency-Key` withholds it — and the pasted key is never in any response. `sessions` says which eworks can use the app now.",
         "tags": [
           "connections"
@@ -6413,7 +6413,7 @@
     "/api/v1/connections/{id}": {
       "get": {
         "operationId": "getConnection",
-        "summary": "Read one connection",
+        "summary": "Get a connection",
         "description": "Everything the Connections page shows for it, in whichever of the two shapes the id names: a stored secret's scope, hosts and connection state by `type`; or a connected app's `app`, `status` and `placements`. Nothing it does not: no stored value, no client secret, in any form. A well-formed id belonging to another organization is the same 404 as a malformed one, whichever store it lives in.",
         "tags": [
           "connections"
@@ -6531,7 +6531,7 @@
       },
       "patch": {
         "operationId": "updateConnection",
-        "summary": "Rename, re-kind, re-scope, or hide a connection",
+        "summary": "Update a connection",
         "description": "Name one or more of `key`, `kind`, `scope` and `internalOnly`. Each is a separate guarded write applied in that order, and the first refusal stops the rest — so a body naming several fields can land some of them and then be refused, and the message says which already applied. `internalOnly` and a client `scope` cannot be combined, in one call or across two: the flag hides a connection from every client-tier agent and a client-scoped one resolves only for a client, so together they resolve for nobody. The stored value is never touched here; use rotate for that. A system-managed connection refuses every change.",
         "tags": [
           "connections"
@@ -6724,7 +6724,7 @@
       },
       "delete": {
         "operationId": "deleteConnection",
-        "summary": "Delete a secret, or disconnect an account",
+        "summary": "Delete a connection",
         "description": "What this does depends on what the connection is. A plain secret is deleted, and its host mappings come down with it if no other variant of the key survives. A connected OAuth account is DISCONNECTED: the token is revoked with the provider first, which is the part that matters, then the row and its hosts go. A provider app is refused — remove it through its own route, which also cleans up every account connected with it. A CONNECTED APP is revoked at Composio first and then removed with every placement it had; `outcome` is `revoked` or `removed` (matching `revoked`), and `sessions` says which eworks lost it. An app Composio cannot revoke programmatically (Exa; a tool server's own sign-in) is still `removed`, with `revokeNotSupported: true`: revoke the credential at the vendor. Any other revoke Composio could not confirm is an `upstream_error`, and the connection stays.\n\n**This removes a credential your agents may be using. A disconnect also revokes the token at the provider, which cannot be undone — reconnecting means going through consent again.**",
         "tags": [
           "connections"
@@ -6843,7 +6843,7 @@
     "/api/v1/connections/{id}/rotate": {
       "post": {
         "operationId": "rotateConnection",
-        "summary": "Replace a connection's value",
+        "summary": "Rotate a connection",
         "description": "The key and every host mapping are unchanged, so anything already naming this credential keeps working. The new value is write-only, like the original. Rotation is refused on a system-managed connection.",
         "tags": [
           "connections"
@@ -7009,7 +7009,7 @@
     "/api/v1/connections/{id}/hosts": {
       "get": {
         "operationId": "listConnectionHosts",
-        "summary": "List the hosts a connection is injected on",
+        "summary": "List hosts",
         "description": "Every host in one answer — a credential has a handful, not a stream, so there is no cursor. Hosts attach to the connection's key, so every scoped variant of that key returns the same list.",
         "tags": [
           "connections"
@@ -7109,7 +7109,7 @@
       },
       "post": {
         "operationId": "addConnectionHost",
-        "summary": "Inject this connection on another host",
+        "summary": "Add a host",
         "description": "The hostname must be bare: no scheme, path, port, userinfo or wildcard. It is lowercased and any trailing dot dropped before it is stored, so what you send and what the gateway matches are the same thing. A host already mapped to another connection in this organization is a `conflict` — one host resolves to exactly one credential. Answers the connection with its new host list.",
         "tags": [
           "connections"
@@ -7275,7 +7275,7 @@
     "/api/v1/connections/{id}/hosts/{host}": {
       "delete": {
         "operationId": "removeConnectionHost",
-        "summary": "Stop injecting on a host",
+        "summary": "Remove a host",
         "description": "Addressed by hostname, canonicalized the same way it was when added. A host mapped to a different connection answers 404 rather than a refusal: it is not this connection's to remove, and saying more would confirm it exists elsewhere.\n\n**The gateway stops injecting this credential on that host immediately. Any agent call relying on it will start failing authentication.**",
         "tags": [
           "connections"
@@ -7418,7 +7418,7 @@
     "/api/v1/connections/oauth/{provider}/connect-url": {
       "post": {
         "operationId": "createOAuthConnectUrl",
-        "summary": "Get a URL for connecting an account",
+        "summary": "Get a connect URL",
         "description": "A consent screen needs a browser and a person, so this returns a link to open rather than claiming to finish. The link carries a single-use nonce instead of an Ergoly session, which means it can be opened in a private window signed into whichever account should be connected — usually the reason you are doing this. It expires; build another if it goes stale. Nothing exists in the vault until consent completes, at which point the connection appears in the list.",
         "tags": [
           "connections"
@@ -7779,7 +7779,7 @@
     "/api/v1/connections/mcp/{id}/finish": {
       "post": {
         "operationId": "finishMcpConnection",
-        "summary": "Repair an MCP connection that has no endpoint",
+        "summary": "Finish an MCP connection",
         "description": "A connection reporting `mcpStatus: \"needs_reconnect\"` holds a valid registration but no address to send anything to, so it can never work as it stands. This tries to work the address out and proves it with a real handshake. If it answers `conflict`, retrying will not help — disconnect and connect again with the server URL.",
         "tags": [
           "connections"
@@ -7879,7 +7879,7 @@
     "/api/v1/connections/provider-apps/{provider}": {
       "get": {
         "operationId": "getProviderApp",
-        "summary": "Read a provider app's public half",
+        "summary": "Get a provider app",
         "description": "The client id and the redirect URI to register with the provider. The client secret is write-only and has no field here. A provider with nothing configured is a 200 saying `configured: false`, not a 404 — the question has an answer either way.",
         "tags": [
           "connections"
@@ -7994,7 +7994,7 @@
       },
       "put": {
         "operationId": "setProviderApp",
-        "summary": "Configure or rotate a provider app",
+        "summary": "Set a provider app",
         "description": "`clientSecret` is required the first time and optional afterwards: send it to rotate, omit it to keep the stored one. The redirect URI is derived by Ergoly and returned for you to register with the provider — it is never something you set. 201 when this created the app, 200 when it rotated one.",
         "tags": [
           "connections"
@@ -8196,7 +8196,7 @@
       },
       "delete": {
         "operationId": "deleteProviderApp",
-        "summary": "Remove a provider app",
+        "summary": "Delete a provider app",
         "description": "Cascades. Every account connected through this app is torn down first, because the client secret their tokens are refreshed with is about to stop existing and leaving them would leave connections nothing can renew. `removedConnections` says how many went.\n\n**This disconnects every account connected through this provider app, revoking their tokens. Anyone using them will have to connect again once a new app is configured.**",
         "tags": [
           "connections"
@@ -8317,7 +8317,7 @@
     "/api/v1/connections/{id}/placements": {
       "post": {
         "operationId": "addConnectionPlacement",
-        "summary": "Place a connected app somewhere else as well",
+        "summary": "Add a placement",
         "description": "A placement is where a connected app may be used — the whole company, one Worker, one Client, or one Worker for one Client — and a connection may have several. Adding one changes which eworks' sessions carry the app, and the answer's `sessions` reports each one reached: what it gained, what it lost, and whether its session could be updated. The credential itself is untouched. A placement already present is a `conflict`; an Ergoly-provided connection refuses every change. A placement no ework could read — `instance` on a Worker that has no active ework for that Client, or `client` for a Client no Worker has one for — is a `conflict` too, and its message names the pair (\"Smith has no ework for Gumshoe.\"): nothing is written, and the remedy is to set that Worker up for the Client from its Worker page, not a different placement.",
         "tags": [
           "connections"
@@ -8493,7 +8493,7 @@
     "/api/v1/connections/{id}/placements/{pid}": {
       "delete": {
         "operationId": "removeConnectionPlacement",
-        "summary": "Stop a connected app being usable somewhere",
+        "summary": "Remove a placement",
         "description": "Removes one placement and leaves the rest. The eworks that lose the app have their sessions updated before this answers, and `sessions` names them. A placement that belongs to a different connection answers 404 rather than a refusal — it is not this connection's to remove. Removing the last placement leaves a connection nobody can use, which is allowed: place it again when you know where it goes.",
         "tags": [
           "connections"
@@ -8621,7 +8621,7 @@
     "/api/v1/connections/{id}/connect-url": {
       "post": {
         "operationId": "mintConnectionConnectUrl",
-        "summary": "Get a fresh sign-in link for a connected app",
+        "summary": "Get a sign-in link",
         "description": "For an account that expired, a consent that never finished, or a failed one. The old account is taken down first — revoked if it still works — and a new hosted sign-in is minted into the same connection, which keeps its id, name and placements. Until the person finishes consent the connection is `pending` and no ework can use it; open `connectUrl` in a browser to finish. It is shown once and a replay withholds it. A connection holding a pasted key refuses this: delete it and connect again with the new key.",
         "tags": [
           "connections"
@@ -8762,7 +8762,7 @@
     "/api/v1/oauth-apps/{app}": {
       "get": {
         "operationId": "getOAuthApp",
-        "summary": "Read whether your own OAuth client is set for an app",
+        "summary": "Get your OAuth client",
         "description": "Whether you have brought your own OAuth client for this catalog app, and the one redirect URI to register on it at the provider. Nothing about the client's credentials is here or anywhere on this API. Not configured is a 200 saying `configured: false`, not a 404.",
         "tags": [
           "connections"
@@ -8867,7 +8867,7 @@
       },
       "put": {
         "operationId": "setOAuthApp",
-        "summary": "Bring your own OAuth client for an app",
+        "summary": "Set your OAuth client",
         "description": "Every hosted sign-in for this app then goes through your client rather than Ergoly's, so the consent screen shows your name and the tokens are yours. Register `redirectUri` on the client at the provider first. Both fields are required every time: the secret is handed to Composio and held nowhere on Ergoly's side, so there is no stored one to keep on a rotation. 201 when this configured the client, 200 when it replaced one. An app that only takes a key has no OAuth sign-in and is a 400.",
         "tags": [
           "connections"
@@ -9047,7 +9047,7 @@
       },
       "delete": {
         "operationId": "deleteOAuthApp",
-        "summary": "Remove your own OAuth client for an app",
+        "summary": "Delete your OAuth client",
         "description": "Deletes the client id and secret from Composio, and hosted sign-ins for the app go back through Ergoly's client. Refused with `conflict` while any connection still signs in through it — the response names them — because Composio takes every account made through the client down with it: remove or reconnect those connections first. A connection of the app that had already expired or failed keeps its row and connects again through whatever client is configured next; `cleared` lists them. Not configured is a 404.",
         "tags": [
           "connections"
@@ -9165,7 +9165,7 @@
     "/api/v1/jobs/{id}": {
       "get": {
         "operationId": "getJob",
-        "summary": "Poll a provisioning run",
+        "summary": "Get a provisioning job",
         "description": "`status`, `currentStep` and the failure `error`. Poll after any 202 until `status` is terminal. A run sitting at `await_oauth_install` is waiting on a workspace admin, not stuck — open its `installUrl` in a browser as one. That install starts a SECOND run and leaves this one parked, so follow the rest on the Worker. `installUrl` is a string only while an install is genuinely owed, and null the moment it is not.",
         "tags": [
           "jobs"
@@ -9433,7 +9433,7 @@
       },
       "put": {
         "operationId": "writeMemoryFile",
-        "summary": "Write one file to a tier",
+        "summary": "Write a file",
         "description": "Send exactly one of `content` (text) or `contentBase64` (bytes) — decoding bytes as text mangles them silently, so sending neither is refused rather than guessed. `changed: false` means the content was already identical and nothing was committed. Every running ework mounting the tier is told, and picks the change up in about twelve seconds.",
         "tags": [
           "memory"
@@ -9603,7 +9603,7 @@
       },
       "post": {
         "operationId": "writeMemoryBundle",
-        "summary": "Write a set of files in one commit",
+        "summary": "Write several files",
         "description": "What a skill install is: the files under `skills/<name>/` written together, so no ework ever sees half a skill. Each file takes `content` or `contentBase64`, the same way a single write does. Use this rather than a loop of single writes whenever the files only make sense together.",
         "tags": [
           "memory"
@@ -9787,7 +9787,7 @@
       },
       "delete": {
         "operationId": "deleteMemory",
-        "summary": "Delete a file or directory from a tier",
+        "summary": "Delete a file or folder",
         "description": "`kind: \"dir\"` removes the directory and everything under it; uninstalling a skill is a `dir` delete of `skills/<name>`. A directory containing a path control owns is refused whole, rather than emptied around it.\n\n**The files are removed from the tier and from every ework that mounts it. The git history keeps them; nothing in this API brings them back.**",
         "tags": [
           "memory"
@@ -9951,7 +9951,7 @@
     "/api/v1/activity": {
       "get": {
         "operationId": "listActivity",
-        "summary": "Read your organization's audit feed",
+        "summary": "Get the activity feed",
         "description": "`?kind=` is exact. `?domain=` matches the leading segment of `kind`, so `?domain=api` is every write made through this API. `?actor=` takes a user id, or the literal `system` for rows with no person behind them — which is where your keys' own writes appear.",
         "tags": [
           "activity"
@@ -10101,7 +10101,7 @@
     "/api/v1/usage": {
       "get": {
         "operationId": "getUsage",
-        "summary": "Read cost, turn outcomes and a daily pulse",
+        "summary": "Get usage",
         "description": "`?window=30d` and `?days=30` ask the same question; either is accepted. Longer than 90 days is clamped to 90. `?tz=` must be an IANA name and decides where a day starts; it defaults to `UTC`. A zone this system does not recognize is refused rather than swapped for the default.",
         "tags": [
           "usage"
