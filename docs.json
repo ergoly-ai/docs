@@ -60,12 +60,12 @@
               {
                 "group": "Clients",
                 "pages": [
-                  "clients",
                   "clients/adding",
                   "clients/assigning-a-worker",
                   "clients/separation",
                   "clients/internal-channels"
-                ]
+                ],
+                "root": "clients"
               }
             ]
           },
@@ -81,7 +81,8 @@
                 "group": "Behaviors",
                 "pages": [
                   "workers/behaviors",
-                  "workers/response-policy"
+                  "workers/response-policy",
+                  "work/approvals"
                 ]
               },
               {
@@ -150,7 +151,6 @@
                   "work/connections/credential-safety"
                 ]
               },
-              "work/approvals",
               "work/artifacts"
             ]
           },
