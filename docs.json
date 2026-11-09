@@ -182,7 +182,7 @@
         "icon": "sparkles",
         "groups": [
           {
-            "group": "Changelog",
+            "group": "Releases",
             "pages": [
               "changelog",
               "changelog/2026-11-02-scheduled-task-cost-and-reliability",
