@@ -49,22 +49,33 @@
             ]
           },
           {
-            "group": "Company",
+            "group": "Your Company",
             "pages": [
               "company",
               "company/chart",
               "company/members",
               "company/teams",
               "company/settings",
-              "company/access"
+              "company/access",
+              {
+                "group": "Clients",
+                "pages": [
+                  "clients",
+                  "clients/adding",
+                  "clients/assigning-a-worker",
+                  "clients/separation",
+                  "clients/internal-channels"
+                ]
+              }
             ]
           },
           {
-            "group": "Workers",
+            "group": "AI Workers",
             "pages": [
               "workers",
               "workers/identity",
               "workers/role",
+              "workers/connections",
               "workers/responsibilities",
               {
                 "group": "Behaviors",
@@ -73,9 +84,6 @@
                   "workers/response-policy"
                 ]
               },
-              "workers/reporting",
-              "workers/access",
-              "workers/triaging",
               {
                 "group": "Channels",
                 "root": "workers/channels",
@@ -120,23 +128,14 @@
                   "workers/knowledge/skills"
                 ]
               },
-              "workers/connections"
-            ]
-          },
-          {
-            "group": "Clients",
-            "pages": [
-              "clients",
-              "clients/adding",
-              "clients/assigning-a-worker",
-              "clients/separation",
-              "clients/internal-channels"
+              "workers/access",
+              "workers/reporting",
+              "workers/triaging"
             ]
           },
           {
             "group": "Work",
             "pages": [
-              "work",
               "work/tasks",
               "work/routines",
               {
