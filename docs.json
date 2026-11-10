@@ -175,6 +175,7 @@
             "group": "Releases",
             "pages": [
               "changelog",
+              "changelog/2026-11-10-test-entry",
               "changelog/2026-11-09-artifacts-on-your-address",
               "changelog/2026-11-02-scheduled-task-cost-and-reliability",
               "changelog/2026-10-26-tasks-launch-and-webhooks",
