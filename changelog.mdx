@@ -16,6 +16,47 @@ import Entry20260907emaillaunchv2hardening from "/snippets/changelog/2026-09-07-
 import Entry20260831agentsurfaceplatformapi from "/snippets/changelog/2026-08-31-agent-surface-platform-api.mdx"
 import Entry20260824streamedturnsandreliability from "/snippets/changelog/2026-08-24-streamed-turns-and-reliability.mdx"
 
+<Update label="November 9, 2026" description="Artifacts on your own address, and workers that answer to their name" rss={{ title:"Artifacts on your own address, and workers that answer to their name",description:"Share artifacts from your own web address, protect them with a password, and talk to your workers by name. Plus faster failure notices, workers that recover on their own, and fixes for slow tools, large Slack workspaces and scheduled task reporting.",date:"2026-11-09" }}>
+  This week your shared artifacts can carry your name instead of ours, your workers are easier to talk to, and a worker that breaks mid-reply tells you sooner.
+
+  ## Your own address for artifacts
+
+  Artifacts you share can use your own web address, so the people you send them to never see an Ergoly link.
+
+  ## Passwords on artifacts
+
+  Artifacts on your own address can be password protected, with a different password for each artifact. You can send one artifact to one customer and another to someone else.
+
+  ## Talk to a worker by name
+
+  Start a message with a worker's name and it answers, with no @ needed. This works at the top of a channel and in a thread, and also when the name opens a question, such as “Wicket, are you there?”.
+
+  ## “Is thinking…” in Slack
+
+  When you message a worker, Slack shows that it is thinking until its first update or answer.
+
+  ## Keep up with a room
+
+  Ask a worker to keep an eye on a channel and it sets up a recurring catch-up that reads the room and remembers what matters. It posts nothing unless you ask.
+
+  ## Improvements
+
+  - **Faster notice when a reply breaks midway.** When a worker's reply breaks partway through, the person who wrote to it is now told within about two minutes, instead of about fourteen.
+  - **Workers recover on their own.** A worker whose workspace breaks now comes back on its own the next time someone messages it.
+  - **Rooms no longer answer everything.** A room can no longer be set to answer every message, and the listen setting is gone. Existing rooms follow the new behavior.
+  - **Settings is for company admins.** The Settings page in control is now for company admins only.
+
+  ## Fixes
+
+  - **Slow tools get time to answer.** Tools connected to a worker can now take up to five minutes to answer, up from one minute, so slow tools return their result instead of losing it.
+  - **More than five accounts of one app.** A worker can keep six or more accounts of the same app connected without losing connections.
+  - **Complete channel lists.** Channel lists in large Slack workspaces are no longer cut short, so workers and the channel picker see every channel.
+  - **Task run times.** Reading your tasks from outside Ergoly now shows when each task last ran and when it runs next.
+  - **Failed task messages.** When a scheduled task's direct message cannot be sent, the run now shows as failed and keeps Slack's reason, so it can be fixed.
+
+  [Link to this entry](/changelog/2026-11-09-artifacts-on-your-address)
+</Update>
+
 <Update label={"November 2, 2026"} description={"Efficient recurring tasks, clearer failures, and worker renames"} rss={{ title: "Efficient recurring tasks, clearer failures, and worker renames", description: "Long-running recurring tasks are now more efficient and stay focused on the current run, a failed turn is no longer met with silence, renaming a worker updates its name in Slack, and new workers more reliably go to work.", date: "2026-11-02" }}>
   <Entry20261102scheduledtaskcostandreliability />
 
