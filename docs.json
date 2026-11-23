@@ -179,6 +179,7 @@
                 "group": "November 2026",
                 "expanded": true,
                 "pages": [
+                  "changelog/2026-11-23-worker-rights-wishes-and-usage",
                   "changelog/2026-11-16-worker-access-and-hours",
                   "changelog/2026-11-09-artifacts-on-your-address",
                   "changelog/2026-11-02-scheduled-task-cost-and-reliability"
