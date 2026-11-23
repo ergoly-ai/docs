@@ -174,8 +174,8 @@
           {
             "group": "Releases",
             "pages": [
-              "changelog/2026-11-16-worker-access-and-hours",
               "changelog",
+              "changelog/2026-11-16-worker-access-and-hours",
               "changelog/2026-11-09-artifacts-on-your-address",
               "changelog/2026-11-02-scheduled-task-cost-and-reliability",
               "changelog/2026-10-26-tasks-launch-and-webhooks",
