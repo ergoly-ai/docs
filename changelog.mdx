@@ -16,6 +16,33 @@ import Entry20260907emaillaunchv2hardening from "/snippets/changelog/2026-09-07-
 import Entry20260831agentsurfaceplatformapi from "/snippets/changelog/2026-08-31-agent-surface-platform-api.mdx"
 import Entry20260824streamedturnsandreliability from "/snippets/changelog/2026-08-24-streamed-turns-and-reliability.mdx"
 
+<Update label="November 16, 2026" description="Who can use a worker, hours you can see, and fixes for stuck work" rss={{ title:"Who can use a worker, hours you can see, and fixes for stuck work",description:"Every worker now shows who can use it and who can change it, and your admins can see the hours your workers use by worker, client and task. Plus a worker that pauses itself when its Slack connection dies, and fixes for files, tasks and replies that got stuck.",date:"2026-11-16" }}>
+  This week you can see who may use a worker and who may change it, your admins can see the hours your workers are using, and a worker whose Slack connection dies comes back on its own.
+
+  ## Who can use a worker, and who can change it
+
+  Every worker now carries two rights, Use and Edit, each set to a level on your organization chart and checked in code — in Slack, in control and on the API. Existing workers let everyone in your organization use them and employees change them; a new worker lets only a person's superiors on the organization chart change it.
+
+  ## Worker hours you can see
+
+  Every turn now records the worker hours it used, and your organization's admins can see the hours used by worker, client and task.
+
+  ## Improvements
+
+  - **A worker whose Slack connection dies pauses itself** — A worker whose Slack connection stays dead is paused, and comes back on its own, instead of retrying a dead connection forever.
+  - **Unused email domains are released** — An organization's email domain is claimed only once email is turned on, and a domain that is never used is released. A retry now waits at most an hour instead of six.
+
+  ## Fixes
+
+  - **Files to connected tools work** — A worker can hand a file to a connected tool, and a file error is no longer reported as the tool refusing the credential.
+  - **A task made from a busy DM keeps its requester** — When several people message a worker at once, the task it creates records who asked, and reports back to them.
+  - **A scheduled task can post into a DM thread** — A task a worker schedules from a direct message can now post back into that thread.
+  - **A task scheduled into a client's channel runs** — A task a worker schedules from a direct message into a client's channel now runs.
+  - **A reply that breaks midway fails sooner** — A round whose reply stream breaks partway through no longer hangs for thirteen minutes before it fails.
+
+  [Link to this entry](/changelog/2026-11-16-worker-access-and-hours)
+</Update>
+
 <Update label="November 9, 2026" description="Artifacts on your own address, and workers that answer to their name" rss={{ title:"Artifacts on your own address, and workers that answer to their name",description:"Share artifacts from your own web address, protect them with a password, and talk to your workers by name. Plus faster failure notices, workers that recover on their own, and fixes for slow tools, large Slack workspaces and scheduled task reporting.",date:"2026-11-09" }}>
   This week your shared artifacts can carry your name instead of ours, your workers are easier to talk to, and a worker that breaks mid-reply tells you sooner.
 
