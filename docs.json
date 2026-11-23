@@ -174,7 +174,6 @@
           {
             "group": "Releases",
             "pages": [
-              "changelog/2026-11-23-worker-rights-wishes-and-usage",
               "changelog",
               "changelog/2026-11-09-artifacts-on-your-address",
               "changelog/2026-11-02-scheduled-task-cost-and-reliability",
