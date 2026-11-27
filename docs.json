@@ -160,6 +160,7 @@
               "glossary",
               "technical",
               "technical/how-a-worker-runs",
+              "technical/the-worker-matrix",
               "technical/where-knowledge-lives",
               "technical/how-a-channel-reaches-a-worker",
               "technical/how-credentials-are-held"
