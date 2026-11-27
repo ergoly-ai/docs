@@ -443,8 +443,14 @@
       "source": "/technical/glossary",
       "destination": "/glossary"
     },
-    {"source": "/work/approvals", "destination": "/workers/behaviors/approvals"},
-    {"source": "/workers/response-policy", "destination": "/workers/behaviors/responding"}
+    {
+      "source": "/work/approvals",
+      "destination": "/workers/behaviors/approvals"
+    },
+    {
+      "source": "/workers/response-policy",
+      "destination": "/workers/behaviors/responding"
+    }
   ],
   "banner": {
     "content": "Ergoly is hiring. <a href=\"https://www.ergoly.ai/jobs\">Apply today</a>.",
